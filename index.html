@@ -161,7 +161,7 @@ h1 em { color: #984d3a; font-weight: normal; }
 
     <aside class="side-note">
       <strong>Một ghi chú nhỏ</strong>
-      <p>Danh sách được lấy tự động từ thư mục <b>files</b> trên GitHub. Chỉ cần tải tệp lên thư mục đó; tên tệp sẽ tự hiện trên trang. Tệp nằm trong thư mục con sẽ không được liệt kê.</p>
+      <p>Danh sách được lấy tự động từ thư mục <b>files</b> trên kho GitHub công khai. Hỗ trợ PDF, DOC, DOCX, TXT, HTML và các định dạng tệp khác. Chỉ liệt kê tệp nằm trực tiếp trong files, không gồm thư mục con. iPad 2 có thể không tải được danh sách nếu Safari quá cũ không kết nối được GitHub API.</p>
     </aside>
   </main>
 
@@ -184,13 +184,14 @@ h1 em { color: #984d3a; font-weight: normal; }
   var allFiles = [];
 
   function getRepository() {
-    var host = window.location.hostname;
-    var path = window.location.pathname.split('/');
+    var host = (window.location.hostname || '').toLowerCase();
+    var path = (window.location.pathname || '/').split('/');
     var owner, repo;
-    if (host.toLowerCase().slice(-10) === '.github.io') {
-      owner = host.split('.')[0];
-      repo = path.length > 1 ? path[1] : '';
-      if (!repo || repo.toLowerCase() === 'index.html') repo = owner + '.github.io';
+    /* GitHub Pages: username.github.io/repository/ OR username.github.io/ */
+    if (host.slice(-10) === '.github.io') {
+      owner = host.substring(0, host.length - 10);
+      while (path.length && path[0] === '') path.shift();
+      repo = path.length && path[0] && path[0].toLowerCase() !== 'index.html' ? path[0] : owner + '.github.io';
       return { owner: owner, repo: repo };
     }
     return null;
@@ -258,6 +259,7 @@ h1 em { color: #984d3a; font-weight: normal; }
     status.style.display = 'block';
     status.innerHTML = message;
     archive.style.display = 'none';
+    empty.style.display = 'none';
     count.innerHTML = '00 TÀI LIỆU';
   }
 
@@ -269,11 +271,11 @@ h1 em { color: #984d3a; font-weight: normal; }
     }
     var xhr = new XMLHttpRequest();
     var api = 'https://api.github.com/repos/' + encodeURIComponent(repoInfo.owner) + '/' + encodeURIComponent(repoInfo.repo) + '/contents/files';
-    xhr.open('GET', api, true);
+    xhr.open('GET', api + '?ref=HEAD', true);
     xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
       if (xhr.status < 200 || xhr.status >= 300) {
-        showError('Không lấy được danh sách tệp. Kiểm tra kho GitHub có công khai không và đã có thư mục <b>files</b> chưa.');
+        showError('Không lấy được danh sách tệp (HTTP ' + xhr.status + '). Hãy kiểm tra kho GitHub có công khai không, thư mục files có tồn tại không và trang đang mở bằng địa chỉ GitHub Pages. Trên iPad 2, Safari quá cũ cũng có thể không kết nối được API GitHub.');
         return;
       }
       var data;
@@ -287,13 +289,17 @@ h1 em { color: #984d3a; font-weight: normal; }
       }
       allFiles = [];
       for (var i = 0; i < data.length; i++) {
-        if (data[i].type === 'file' && data[i].name && data[i].download_url) {
-          allFiles.push({ name: data[i].name, url: data[i].download_url });
+        if (data[i].type === 'file' && data[i].name && (data[i].download_url || data[i].html_url)) {
+          allFiles.push({ name: data[i].name, url: data[i].download_url || data[i].html_url });
         }
       }
       allFiles.sort(function (a, b) { return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0); });
       status.style.display = 'none';
       archive.style.display = 'block';
+      if (!allFiles.length) {
+        status.style.display = 'block';
+        status.innerHTML = 'Thư mục <b>files</b> đang trống hoặc GitHub chưa trả về tệp nào. Hãy kiểm tra tệp đã được upload lên đúng thư mục chưa.';
+      }
       render();
     };
     xhr.onerror = function () {
