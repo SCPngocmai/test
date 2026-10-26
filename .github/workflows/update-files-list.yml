@@ -1,0 +1,40 @@
+name: Update downloadable file list
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'files/**'
+      - '.github/workflows/update-files-list.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build files.json
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          folder = Path('files')
+          result = []
+          if folder.exists():
+              for p in sorted(folder.iterdir(), key=lambda x: x.name.lower()):
+                  if p.is_file():
+                      from urllib.parse import quote
+                      result.append({"name": p.name, "url": "files/" + quote(p.name, safe="")})
+          Path('files.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8')
+          PY
+      - name: Commit updated file list
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add files.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update downloadable file list'
+            git push
+          fi
