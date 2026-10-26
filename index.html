@@ -8,13 +8,13 @@
 <style>
   * { box-sizing: border-box; }
   body { margin:0; background:#f2eadc; color:#3b2d25; font-family:Georgia,"Times New Roman",serif; }
-  header { padding:25px 22px 20px; border:2px solid #b58a6b; border-bottom:3px solid #9d4936; background:#e9dece; border-radius:0 0 26px 26px; box-shadow:0 5px 16px rgba(83,57,37,.10); }
+  header { padding:12px 18px 10px; border:2px solid #b58a6b; border-bottom:3px solid #9d4936; background:#e9dece; border-radius:0 0 26px 26px; box-shadow:0 5px 16px rgba(83,57,37,.10); }
   .eyebrow { font: bold 10px Arial,sans-serif; letter-spacing:2px; color:#a34c38; text-transform:uppercase; }
   h1 { margin:9px 0 7px; font-size:34px; font-weight:normal; letter-spacing:-1.2px; color:#854633; }
   .sub { font:13px Arial,sans-serif; color:#796d61; line-height:1.5; }
   main { max-width:900px; margin:0 auto; padding:20px 17px; }
   .toolbar { display:flex; gap:8px; margin-bottom:7px; }
-  .top-tools { margin-top:16px; padding:12px; background:rgba(255,250,242,.42); border:1px solid #d3b99f; border-radius:16px; }
+  .top-tools { margin-top:8px; padding:8px; background:rgba(255,250,242,.42); border:1px solid #d3b99f; border-radius:16px; }
   .data-tools { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
   .data-label { font:11px Arial,sans-serif; color:#8a6c56; letter-spacing:.5px; margin-right:3px; }
   button.mini-data { padding:8px 11px; font-size:12px; box-shadow:none; }
@@ -23,6 +23,7 @@
   button { border:0; border-radius:14px; background:#9d4936; color:#fffaf2; padding:12px 15px; font:bold 13px Arial,sans-serif; cursor:pointer; box-shadow:0 3px 8px rgba(83,57,37,.08); }
   button.secondary { background:#e7dccd; color:#4b3c32; border:1px solid #d7c9b8; }
   .sectionline { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #d7c9b8; padding-bottom:9px; margin:20px 0 12px; }
+  .sectionline h2 { font-weight:700; }
   h2 { font-size:19px; font-weight:normal; margin:0; }
   .count { font:11px Arial,sans-serif; color:#89796a; }
   .filters { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
@@ -53,7 +54,7 @@
   .empty { padding:20px; color:#88796b; font:14px Arial,sans-serif; background:#eee5d8; }
   footer { text-align:center; padding:24px 12px 34px; font:11px Arial,sans-serif; color:#9a8a79; letter-spacing:1px; }
   @media (min-width:600px) {
-    header { padding:24px calc((100% - 720px)/2); }
+    header { padding:12px calc((100% - 720px)/2) 10px; }
     h1 { font-size:42px; }
     .bookgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .book { margin:0; }
@@ -68,9 +69,11 @@
 @media (max-width:600px) {
   .editor-tools { gap:6px; }
   .mini-tool { padding:7px 8px !important; }
-  header { padding:18px 14px 16px; }
+  header { padding:10px 12px 8px; }
   h1 { font-size:29px; }
-  .top-tools { padding:9px; }
+  .top-tools { padding:7px; }
+  .poem-lines { font-size:16px !important; line-height:1.6 !important; }
+  .poem-lines > div:not(:last-child) { font-size:15px !important; gap:8px !important; }
   .toolbar { gap:6px; }
   .toolbar input { padding:11px 10px; }
   .toolbar button { padding:10px 11px; white-space:nowrap; }
@@ -81,18 +84,16 @@
 <body>
 <header style="position:relative;overflow:hidden">
   <div style="max-width:720px;margin:0 auto">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:17px;color:#9d4936">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;color:#9d4936">
       <span style="font:22px Georgia,serif;line-height:1">✳</span>
       <span style="font:10px Arial,sans-serif;letter-spacing:2px">GÓC CỦA NHỮNG TRANG MỞ</span>
       <span style="height:1px;background:#d1bda7;flex:1"></span>
     </div>
-    <div style="margin-bottom:19px;padding:19px 20px 17px;background:#f1e5d4;border:1px solid #ddcbb6;border-radius:16px;box-shadow:0 3px 10px rgba(83,57,37,.04)">
-      <div style="color:#6e5141;font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:1.85">
-        <div style="text-align:left;margin:0 0 2px 0">Kẻ lữ hành <em>say giấc</em> giữa ngân hà,</div>
-        <div style="text-align:left;margin:0 0 13px 22px">Tâm phiêu du qua vạn nẻo bao la,</div>
-        <div style="text-align:right;margin:0 22px 2px 0">Mắt <em>rong ruổi</em> muôn phương trời viễn mộng,</div>
-        <div style="text-align:right;margin:0">Mải mê tìm những thế giới ngoài xa.</div>
-        <div style="text-align:right;margin-top:13px;color:#9d4936;font-size:13px;letter-spacing:1.5px"><span style="display:inline-block;width:30px;border-top:1px solid #b66c51;vertical-align:middle;margin-right:9px"></span><strong><em>aurora</em></strong></div>
+    <div style="margin-bottom:8px;padding:9px 14px 8px;background:#f1e5d4;border:1px solid #ddcbb6;border-radius:16px;box-shadow:0 3px 10px rgba(83,57,37,.04)">
+      <div class="poem-lines" style="color:#6e5141;font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.55">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;white-space:nowrap;font-size:17px;margin:0 0 4px 0"><span>Kẻ lữ hành <em>say giấc</em> giữa ngân hà,</span><span>Tâm phiêu du qua vạn nẻo bao la.</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;white-space:nowrap;font-size:17px"><span>Mắt <em>rong ruổi</em> muôn phương trời viễn mộng,</span><span>Mãi mê tìm những thế giới ngoài xa.</span></div>
+        <div style="text-align:right;margin-top:5px;color:#9d4936;font-size:11px;letter-spacing:1.5px"><span style="display:inline-block;width:30px;border-top:1px solid #b66c51;vertical-align:middle;margin-right:9px"></span><strong><em>aurora</em></strong></div>
       </div>
     </div>
     <div class="top-tools">
@@ -107,7 +108,7 @@
         <input id="importFile" type="file" accept=".json,application/json" style="display:none">
       </div>
     </div>
-    <div style="height:1px;background:#d7c9b8;margin-top:16px"></div>
+    <div style="height:1px;background:#d7c9b8;margin-top:8px"></div>
   </div>
 </header>
 <main>
