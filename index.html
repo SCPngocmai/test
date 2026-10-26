@@ -1,276 +1,352 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#f4efe6">
-<title>Kho lưu trữ — Archive No. 01</title>
+<title>Đọc để hiểu, học để nhớ</title>
 <style>
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: #f4efe6;
-  color: #332e29;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 17px;
-  line-height: 1.55;
-}
-a { color: inherit; }
-.page { max-width: 980px; margin: 0 auto; padding: 22px 20px 36px; }
-.masthead {
-  border-bottom: 1px solid #cfc2b2;
-  padding: 4px 0 15px;
-  overflow: hidden;
-}
-.wordmark { float: left; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; letter-spacing: 2px; color: #8d4938; }
-.issue { float: right; font-family: Arial, Helvetica, sans-serif; font-size: 11px; letter-spacing: 1px; color: #76695d; }
-.clear { clear: both; }
-.hero {
-  position: relative;
-  margin: 25px 0 30px;
-  padding: 28px 26px 25px;
-  background: #e8dfd1;
-  border-radius: 3px 56px 3px 3px;
-  overflow: hidden;
-}
-.hero:after {
-  content: "A";
-  position: absolute;
-  right: 20px;
-  bottom: -80px;
-  font-family: Georgia, serif;
-  font-size: 300px;
-  line-height: 1;
-  color: rgba(151, 76, 56, .08);
-  pointer-events: none;
-}
-.hero-inner { position: relative; z-index: 1; max-width: 610px; }
-.eyebrow { font-family: Arial, Helvetica, sans-serif; color: #96513f; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
-h1 { margin: 12px 0 12px; font-size: 42px; line-height: 1.06; letter-spacing: -1.5px; font-weight: normal; }
-h1 em { color: #984d3a; font-weight: normal; }
-.hero-copy { max-width: 440px; margin: 0; color: #6c5f53; font-size: 16px; }
-.hero-foot { margin-top: 24px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; letter-spacing: 1px; color: #7a6b5d; }
-.hero-foot span { color: #9b4d3a; padding: 0 7px; }
-.introline { margin: 0 2px 18px; overflow: hidden; }
-.introline h2 { float: left; margin: 0; font-size: 24px; line-height: 1.2; font-weight: normal; letter-spacing: -.4px; }
-.introline p { float: right; margin: 6px 0 0; font-family: Arial, Helvetica, sans-serif; color: #85786c; font-size: 12px; }
-.toolbar { margin: 0 0 14px; padding: 10px 0; border-top: 1px solid #d9cfc2; border-bottom: 1px solid #d9cfc2; }
-.search-wrap { display: inline-block; width: 52%; min-width: 210px; vertical-align: middle; }
-.search {
-  width: 100%; border: 0; border-bottom: 1px solid #b7a899; background: transparent;
-  border-radius: 0; padding: 9px 2px; font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px; color: #332e29; outline: none; -webkit-appearance: none;
-}
-.search:focus { border-bottom: 2px solid #9a4e3a; }
-.filters { display: inline-block; vertical-align: middle; margin-left: 10px; }
-.filter {
-  display: inline-block; margin: 3px 3px 3px 0; padding: 7px 11px;
-  border: 1px solid #d4c7b8; border-radius: 20px; background: transparent;
-  color: #75685d; text-decoration: none; font: 12px Arial, Helvetica, sans-serif;
-}
-.filter.active, .filter:focus { background: #974d3a; border-color: #974d3a; color: #fffaf3; outline: none; }
-.archive-list { border-top: 1px solid #cfc2b2; }
-.archive-item {
-  display: table; width: 100%; table-layout: fixed;
-  padding: 17px 2px 17px; border-bottom: 1px solid #d9cfc2;
-}
-.item-no, .item-main, .item-action { display: table-cell; vertical-align: middle; }
-.item-no { width: 65px; color: #a45b46; font-size: 20px; font-style: italic; }
-.item-main { padding-right: 12px; }
-.item-kind { display: block; margin-bottom: 3px; font: bold 10px Arial, Helvetica, sans-serif; letter-spacing: 1.4px; color: #9a7667; text-transform: uppercase; }
-.item-title { margin: 0; font-size: 20px; font-weight: normal; line-height: 1.25; }
-.item-desc { margin: 5px 0 0; color: #7a6e62; font: 13px/1.5 Arial, Helvetica, sans-serif; }
-.item-action { width: 115px; text-align: right; }
-.download {
-  display: inline-block; min-width: 100px; padding: 10px 12px; text-align: center;
-  background: #974d3a; border: 1px solid #974d3a; border-radius: 2px;
-  color: #fffaf3; text-decoration: none; font: bold 12px Arial, Helvetica, sans-serif;
-}
-.download:focus, .download:active { background: #713a2d; outline: 2px solid #c8a18f; }
-.download.secondary { background: transparent; color: #974d3a; }
-.empty { display: none; padding: 25px 4px; color: #7a6e62; font-size: 15px; }
-.side-note {
-  margin: 30px 0 0; padding: 18px 20px; background: #e9e1d5;
-  border-left: 3px solid #a45640; overflow: hidden;
-}
-.side-note strong { display: block; font-size: 17px; font-weight: normal; margin-bottom: 3px; }
-.side-note p { margin: 0; color: #74685c; font: 13px/1.65 Arial, Helvetica, sans-serif; }
-.bottom { margin-top: 32px; padding-top: 13px; border-top: 1px solid #cfc2b2; color: #897c70; font: 10px Arial, Helvetica, sans-serif; letter-spacing: 1px; overflow: hidden; }
-.bottom .left { float: left; }
-.bottom .right { float: right; color: #9a4e3a; }
-@media (max-width: 560px) {
-  .page { padding: 16px 14px 28px; }
-  .hero { padding: 24px 19px 22px; margin-top: 19px; border-top-right-radius: 42px; }
-  h1 { font-size: 35px; }
-  .hero:after { right: -6px; font-size: 230px; bottom: -62px; }
-  .introline h2 { float: none; }
-  .introline p { float: none; margin-top: 5px; }
-  .search-wrap { display: block; width: 100%; }
-  .filters { margin: 8px 0 0; }
-  .item-no { width: 40px; font-size: 17px; }
-  .item-title { font-size: 18px; }
-  .item-desc { font-size: 12px; }
-  .item-action { width: 84px; }
-  .download { min-width: 76px; padding: 9px 5px; font-size: 11px; }
-  .archive-item { padding: 15px 0; }
-}
+  * { box-sizing: border-box; }
+  body { margin:0; background:#f2eadc; color:#3b2d25; font-family:Georgia,"Times New Roman",serif; }
+  header { padding:25px 22px 20px; border:2px solid #b58a6b; border-bottom:3px solid #9d4936; background:#e9dece; border-radius:0 0 26px 26px; box-shadow:0 5px 16px rgba(83,57,37,.10); }
+  .eyebrow { font: bold 10px Arial,sans-serif; letter-spacing:2px; color:#a34c38; text-transform:uppercase; }
+  h1 { margin:9px 0 7px; font-size:34px; font-weight:normal; letter-spacing:-1.2px; color:#854633; }
+  .sub { font:13px Arial,sans-serif; color:#796d61; line-height:1.5; }
+  main { max-width:900px; margin:0 auto; padding:20px 17px; }
+  .toolbar { display:flex; gap:8px; margin-bottom:7px; }
+  .top-tools { margin-top:16px; padding:12px; background:rgba(255,250,242,.42); border:1px solid #d3b99f; border-radius:16px; }
+  .data-tools { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+  .data-label { font:11px Arial,sans-serif; color:#8a6c56; letter-spacing:.5px; margin-right:3px; }
+  button.mini-data { padding:8px 11px; font-size:12px; box-shadow:none; }
+  input, select, textarea { min-width:0; font:16px Arial,sans-serif; color:#342b25; background:#fffaf2; border:1px solid #d7c9b8; border-radius:14px; padding:13px 14px; }
+  #search { flex:1; width:100%; }
+  button { border:0; border-radius:14px; background:#9d4936; color:#fffaf2; padding:12px 15px; font:bold 13px Arial,sans-serif; cursor:pointer; box-shadow:0 3px 8px rgba(83,57,37,.08); }
+  button.secondary { background:#e7dccd; color:#4b3c32; border:1px solid #d7c9b8; }
+  .sectionline { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #d7c9b8; padding-bottom:9px; margin:20px 0 12px; }
+  h2 { font-size:19px; font-weight:normal; margin:0; }
+  .count { font:11px Arial,sans-serif; color:#89796a; }
+  .filters { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
+  .chip { background:#eee2d2; border:1px solid #d6c3ad; color:#665448; padding:9px 13px; font-size:12px; border-radius:20px; }
+  .chip.active { background:#854633; color:#fffaf2; border-color:#854633; }
+  .book-selectbar { display:none; gap:8px; flex-wrap:wrap; margin:0 0 12px; padding:12px; border:1px solid #d7c1aa; border-radius:14px; background:#eadbca; }
+  .book-selectbar.visible { display:flex; }
+  .book-check { display:none; margin-bottom:10px; font:13px Arial,sans-serif; color:#854633; }
+  .select-mode .book-check { display:block; }
+  .book-check input { width:18px; height:18px; vertical-align:middle; margin-right:7px; }
+  .book.selected-book { border:2px solid #9d4936; background:#f3e4d2; }
+  .book { background:rgba(255,250,242,.94); border:1px solid #e0d4c5; border-left:3px solid #b66c51; border-radius:5px 17px 17px 5px; padding:17px; margin-bottom:12px; cursor:pointer; box-shadow:0 5px 15px rgba(83,57,37,.05); }
+  .book .category { font:bold 10px Arial,sans-serif; letter-spacing:1.4px; color:#a34c38; text-transform:uppercase; }
+  .book h3 { font-size:21px; font-weight:normal; margin:7px 0; }
+  .book p { font-size:14px; line-height:1.55; color:#75675b; margin:0 0 10px; }
+  .meta { font:11px Arial,sans-serif; color:#8b7c6c; }
+  .reader { display:none; background:#fffaf2; border:1px solid #e0d4c5; border-radius:5px 22px 22px 5px; padding:23px 19px; margin-top:12px; box-shadow:0 8px 24px rgba(83,57,37,.06); }
+  .reader h2 { font-size:28px; line-height:1.2; margin:10px 0; }
+  .reader .body { font-size:18px; line-height:1.8; overflow-wrap:break-word; }
+  .reader .body h3 { font-size:20px; font-weight:normal; margin-top:25px; }
+  .reader .body p { margin:0 0 17px; }
+  .reader .body blockquote { border-left:3px solid #a34c38; margin:20px 0; padding:4px 0 4px 14px; color:#80614f; }
+  .admin { margin-top:28px; border-top:2px solid #a34c38; padding-top:18px; background:rgba(255,250,242,.6); border-radius:4px 20px 20px 4px; padding:20px; }
+  .admin p, .hint { font:13px/1.6 Arial,sans-serif; color:#796d61; }
+  .formgrid { display:grid; grid-template-columns:1fr; gap:9px; }
+  textarea { width:100%; min-height:180px; line-height:1.5; resize:vertical; }
+  .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .empty { padding:20px; color:#88796b; font:14px Arial,sans-serif; background:#eee5d8; }
+  footer { text-align:center; padding:24px 12px 34px; font:11px Arial,sans-serif; color:#9a8a79; letter-spacing:1px; }
+  @media (min-width:600px) {
+    header { padding:24px calc((100% - 720px)/2); }
+    h1 { font-size:42px; }
+    .bookgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .book { margin:0; }
+    .formgrid { grid-template-columns:1fr 1fr; }
+    .formgrid .wide { grid-column:1 / -1; }
+  }
 
-.repo-box { margin: 0 0 16px; padding: 13px 14px; background: #eee5d8; border: 1px solid #d9cfc2; }
-.repo-label { display:block; margin-bottom:6px; color:#75685d; font: bold 11px Arial,Helvetica,sans-serif; letter-spacing:1px; }
-.repo-input { width:100%; padding:10px; border:1px solid #cfc2b2; border-radius:2px; background:#fffaf3; color:#332e29; font:14px Arial,Helvetica,sans-serif; }
-.repo-button { margin-top:8px; padding:10px 14px; border:1px solid #974d3a; border-radius:2px; background:#974d3a; color:#fffaf3; font:bold 12px Arial,Helvetica,sans-serif; }
-.repo-help { margin:7px 0 0; color:#7a6e62; font:12px/1.5 Arial,Helvetica,sans-serif; }
-
+.editor-tools { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:2px 0 0; }
+.editor-label { color:#8b6d56; font-size:12px; margin-right:4px; }
+.mini-tool { padding:7px 10px !important; min-height:32px; font-size:12px !important; border-radius:10px !important; }
+#newContent { min-height:190px; line-height:1.65; }
+@media (max-width:600px) {
+  .editor-tools { gap:6px; }
+  .mini-tool { padding:7px 8px !important; }
+  header { padding:18px 14px 16px; }
+  h1 { font-size:29px; }
+  .top-tools { padding:9px; }
+  .toolbar { gap:6px; }
+  .toolbar input { padding:11px 10px; }
+  .toolbar button { padding:10px 11px; white-space:nowrap; }
+  .data-tools { gap:6px; }
+}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="masthead">
-    <div class="wordmark">ARCHIVE / PERSONAL COLLECTION</div>
-    <div class="issue">BỘ SƯU TẬP SỐ 01</div>
-    <div class="clear"></div>
+<header style="position:relative;overflow:hidden">
+  <div style="max-width:720px;margin:0 auto">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:17px;color:#9d4936">
+      <span style="font:22px Georgia,serif;line-height:1">✳</span>
+      <span style="font:10px Arial,sans-serif;letter-spacing:2px">GÓC CỦA NHỮNG TRANG MỞ</span>
+      <span style="height:1px;background:#d1bda7;flex:1"></span>
+    </div>
+    <div style="margin-bottom:19px;padding:19px 20px 17px;background:#f1e5d4;border:1px solid #ddcbb6;border-radius:16px;box-shadow:0 3px 10px rgba(83,57,37,.04)">
+      <div style="color:#6e5141;font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:1.85">
+        <div style="text-align:left;margin:0 0 2px 0">Kẻ lữ hành <em>say giấc</em> giữa ngân hà,</div>
+        <div style="text-align:left;margin:0 0 13px 22px">Tâm phiêu du qua vạn nẻo bao la,</div>
+        <div style="text-align:right;margin:0 22px 2px 0">Mắt <em>rong ruổi</em> muôn phương trời viễn mộng,</div>
+        <div style="text-align:right;margin:0">Mải mê tìm những thế giới ngoài xa.</div>
+        <div style="text-align:right;margin-top:13px;color:#9d4936;font-size:13px;letter-spacing:1.5px"><span style="display:inline-block;width:30px;border-top:1px solid #b66c51;vertical-align:middle;margin-right:9px"></span><strong><em>aurora</em></strong></div>
+      </div>
+    </div>
+    <div class="top-tools">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Tìm bài đọc hoặc từ khóa…" aria-label="Tìm bài đọc">
+        <button id="showAdd">+ Thêm bài</button>
+      </div>
+      <div class="data-tools">
+        <span class="data-label">Thư viện</span>
+        <button class="secondary mini-data" id="export">↑ Xuất</button>
+        <button class="secondary mini-data" id="importBtn">↓ Nhập</button>
+        <input id="importFile" type="file" accept=".json,application/json" style="display:none">
+      </div>
+    </div>
+    <div style="height:1px;background:#d7c9b8;margin-top:16px"></div>
   </div>
-
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">Một nơi để cất giữ</div>
-      <h1>Kho lưu trữ<br><em>những điều hữu ích.</em></h1>
-      <p class="hero-copy">Tài liệu, ghi chú và những tệp muốn giữ lại — được sắp xếp gọn gàng để tìm thấy khi cần.</p>
-      <div class="hero-foot">LƯU TRỮ <span>✳</span> SẮP XẾP <span>✳</span> MANG THEO</div>
+</header>
+<main>
+  <div class="sectionline"><h2>Chủ đề</h2><span class="count">CHỌN CHỦ ĐỀ</span></div>
+  <div id="filters" class="filters"></div>
+  <div class="sectionline"><h2>Trong thư viện</h2><span id="total" class="count"></span></div>
+  <div id="selectBar" class="book-selectbar">
+    <button id="selectShown" class="secondary">Chọn tất cả bài đang hiện</button>
+    <button id="clearSelection" class="secondary">Bỏ chọn</button>
+    <button id="deleteSelected">Xóa bài đã chọn</button>
+    <span id="selectedCount" class="count" style="align-self:center"></span>
+  </div>
+  <div id="library" class="bookgrid"></div>
+  <article id="reader" class="reader">
+    <div class="actions" style="margin-top:0;margin-bottom:18px">
+      <button class="secondary" id="back">← Quay lại thư viện</button>
+      <button id="editBook">✎ Sửa bài</button>
     </div>
-  </header>
+    <div id="readerCategory" class="eyebrow" style="margin-top:22px"></div>
+    <h2 id="readerTitle"></h2>
+    <div id="readerMeta" class="meta"></div>
+    <div id="readerBody" class="body"></div>
+  </article>
 
-  <main>
-    <div class="introline">
-      <h2>Danh mục lưu trữ</h2>
-      <p id="count">03 TÀI LIỆU</p>
-      <div class="clear"></div>
-    </div>
-
-    <div class="toolbar">
-      <div class="search-wrap">
-        <input class="search" id="search" type="search" placeholder="Tìm theo tên hoặc định dạng…" aria-label="Tìm tài liệu">
+  <section id="addPanel" class="admin" style="display:none">
+    <h2 id="formHeading" style="font-size:25px;margin:8px 0">Thêm một bài đọc</h2>
+    <p>Điền thông tin, dán nội dung rồi bấm lưu. Bài được lưu trên trình duyệt này. Hãy xuất dữ liệu để sao lưu hoặc chuyển sang thiết bị khác.</p>
+    <div class="formgrid">
+      <input id="newTitle" class="wide" placeholder="Tên bài đọc">
+      <input id="newCategory" placeholder="Chủ đề, ví dụ: Tâm lý học">
+      <input id="newAuthor" placeholder="Tác giả / nguồn (không bắt buộc)">
+      <input id="newSummary" class="wide" placeholder="Mô tả ngắn để hiện ở thư viện">
+      <div class="wide editor-tools" aria-label="Công cụ định dạng">
+        <span class="editor-label">Định dạng nhanh</span>
+        <button type="button" class="secondary mini-tool" onclick="formatContent('h3')">Tiêu đề mục</button>
+        <button type="button" class="secondary mini-tool" onclick="formatContent('strong')"><strong>Chữ đậm</strong></button>
+        <button type="button" class="secondary mini-tool" onclick="formatContent('em')"><em>Chữ nghiêng</em></button>
+        <button type="button" class="secondary mini-tool" onclick="formatContent('blockquote')">Trích dẫn</button>
+        <button type="button" class="secondary mini-tool" onclick="formatContent('ul')">Danh sách</button>
+        <button type="button" class="secondary mini-tool" onclick="formatContent('p')">Đoạn văn</button>
       </div>
-      <div class="filters" aria-label="Lọc tài liệu">
-        <a href="#" class="filter active" data-filter="all">Tất cả</a>
-        <a href="#" class="filter" data-filter="doc">Tài liệu</a>
-        <a href="#" class="filter" data-filter="note">Ghi chú</a>
-        <a href="#" class="filter" data-filter="web">HTML</a>
-      </div>
+      <textarea id="newContent" class="wide" placeholder="Dán hoặc nhập nội dung bài đọc tại đây. Để định dạng, hãy chọn phần chữ rồi bấm nút phía trên. Nếu chưa chọn chữ, nút sẽ chèn một mẫu để tiện chỉnh sửa."></textarea>
     </div>
-
-    <div class="repo-box">
-      <label class="repo-label" for="repoUrl">ĐƯỜNG DẪN KHO GITHUB CÔNG KHAI</label>
-      <input class="repo-input" id="repoUrl" type="url" placeholder="https://github.com/ten-tai-khoan/ten-kho">
-      <button class="repo-button" id="loadRepo" type="button">Tải danh sách tài liệu</button>
-      <p class="repo-help">Đặt các tệp trong thư mục <b>files</b> của kho GitHub. Dán đường dẫn kho vào đây; tên tệp sẽ tự hiện, không cần nhập từng tên.</p>
+    <div class="actions">
+      <button id="save">Lưu bài vào thư viện</button>
+      <button class="secondary" id="cancelAdd">Hủy</button>
     </div>
-    <div class="archive-list" id="archive">
-      <div style="padding:22px 4px;color:#7a6e62;font:13px/1.6 Arial,Helvetica,sans-serif">Nhập đường dẫn kho GitHub công khai ở trên để hiện danh sách.</div>
-    </div>
-    <div class="empty" id="empty">Chưa tìm thấy tài liệu phù hợp. Thử một từ khóa khác nhé.</div>
-
-    <aside class="side-note">
-      <strong>Một ghi chú nhỏ</strong>
-      <p>Kho GitHub phải để ở chế độ công khai và trang này cần được mở bằng địa chỉ HTTPS sau khi đăng lên web. Nếu mở trực tiếp tệp HTML trong ứng dụng Tệp hoặc từ đường dẫn máy tính, Safari có thể chặn việc lấy danh sách từ GitHub.</p>
-    </aside>
-  </main>
-
-  <footer class="bottom">
-    <span class="left">KHO LƯU TRỮ CÁ NHÂN</span>
-    <span class="right">KEEP WHAT MATTERS.</span>
-    <div class="clear"></div>
-  </footer>
-</div>
-
+    <p class="hint">Mẹo nhỏ: thỉnh thoảng hãy xuất dữ liệu để giữ một bản sao an toàn.</p>
+  </section>
+</main>
+<footer>ĐỌC CHẬM · GIỮ ĐIỀU ĐÁNG NHỚ</footer>
 <script>
-(function () {
-  var search = document.getElementById('search');
-  var archive = document.getElementById('archive');
-  var filters = document.getElementsByClassName('filter');
-  var empty = document.getElementById('empty');
-  var count = document.getElementById('count');
-  var repoInput = document.getElementById('repoUrl');
-  var loadButton = document.getElementById('loadRepo');
-  var activeFilter = 'all';
-  var repoUser = '', repoName = '', branch = 'main';
+function formatContent(tag) {
+  var area = document.getElementById("newContent");
+  if (!area) return;
+  var start = area.selectionStart || 0;
+  var end = area.selectionEnd || 0;
+  var value = area.value;
+  var selected = value.substring(start, end);
+  var before = value.substring(0, start);
+  var after = value.substring(end);
+  var insert = "";
+  var cursorOffset = 0;
 
-  function esc(v) {
-    return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
-  function encodePath(path) {
-    var a = path.split('/'), out = [], i;
-    for (i = 0; i < a.length; i++) out.push(encodeURIComponent(a[i]));
-    return out.join('/');
-  }
-  function categoryFor(name) {
-    var dot = name.lastIndexOf('.');
-    var ext = dot >= 0 ? name.substring(dot + 1).toLowerCase() : '';
-    if (ext === 'html' || ext === 'htm') return {key:'web', label:ext.toUpperCase()+' / HTML'};
-    if (ext === 'txt' || ext === 'md' || ext === 'rtf') return {key:'note', label:ext.toUpperCase()+' / GHI CHÚ'};
-    if (ext === 'pdf') return {key:'doc', label:'PDF / TÀI LIỆU'};
-    if (ext === 'doc' || ext === 'docx' || ext === 'odt') return {key:'doc', label:ext.toUpperCase()+' / TÀI LIỆU'};
-    if (ext === 'ppt' || ext === 'pptx') return {key:'doc', label:ext.toUpperCase()+' / TRÌNH CHIẾU'};
-    if (ext === 'xls' || ext === 'xlsx' || ext === 'csv') return {key:'doc', label:ext.toUpperCase()+' / BẢNG TÍNH'};
-    if (ext === 'zip' || ext === 'rar' || ext === '7z') return {key:'doc', label:ext.toUpperCase()+' / TỆP NÉN'};
-    return {key:'doc', label:(ext ? ext.toUpperCase() : 'TỆP')+' / TÀI LIỆU'};
-  }
-  function update() {
-    var query = (search.value || '').toLowerCase();
-    var items = archive.getElementsByTagName('article');
-    var visible = 0, i, item, text, category, show;
-    for (i=0; i<items.length; i++) {
-      item=items[i]; text=(item.getAttribute('data-search')||'').toLowerCase(); category=item.getAttribute('data-category');
-      show=(activeFilter==='all'||activeFilter===category)&&(query===''||text.indexOf(query)!==-1);
-      item.style.display=show?'table':'none'; if(show) visible++;
+  if (tag === "ul") {
+    if (selected) {
+      var lines = selected.split(/\\r?\\n/);
+      for (var i = 0; i < lines.length; i++) lines[i] = "<li>" + lines[i] + "</li>";
+      insert = "<ul>\\n" + lines.join("\\n") + "\\n</ul>";
+    } else {
+      insert = "<ul>\\n<li>Mục thứ nhất</li>\\n<li>Mục thứ hai</li>\\n</ul>";
     }
-    empty.style.display=visible?'none':'block';
-    count.innerHTML=(visible<10?'0':'')+visible+' TÀI LIỆU';
+  } else {
+    var open = "<" + tag + ">";
+    var close = "</" + tag + ">";
+    if (selected) {
+      insert = open + selected + close;
+    } else {
+      var samples = {
+        "h3": "Tiêu đề mục",
+        "strong": "chữ cần in đậm",
+        "em": "chữ cần in nghiêng",
+        "blockquote": "Nội dung trích dẫn",
+        "p": "Nội dung đoạn văn"
+      };
+      var sample = samples[tag] || "Nội dung";
+      insert = open + sample + close;
+      cursorOffset = open.length;
+    }
   }
-  function error(msg) {
-    archive.innerHTML='<div style="padding:20px 4px;color:#7a6e62;font:13px/1.6 Arial,Helvetica,sans-serif">'+esc(msg)+'</div>';
-    count.innerHTML='00 TÀI LIỆU'; empty.style.display='none';
+
+  area.value = before + insert + after;
+  area.focus();
+  if (selected) {
+    area.setSelectionRange(start + insert.length, start + insert.length);
+  } else if (cursorOffset) {
+    area.setSelectionRange(start + cursorOffset, start + cursorOffset + (tag === "h3" ? 13 : tag === "strong" ? 15 : tag === "em" ? 17 : tag === "blockquote" ? 20 : 16));
+  } else {
+    area.setSelectionRange(start + insert.length, start + insert.length);
   }
-  function loadFiles() {
-    var raw=(repoInput.value||'').replace(/\s/g,'').replace(/\/$/,'');
-    var match=raw.match(/^https?:\/\/(?:www\.)?github\.com\/([^\/]+)\/([^\/#?]+)/i);
-    if (!match) { error('Hãy dán đường dẫn kho GitHub dạng https://github.com/tai-khoan/ten-kho.'); return; }
-    repoUser=match[1]; repoName=match[2].replace(/\.git$/i,'');
-    archive.innerHTML='<div style="padding:20px 4px;color:#7a6e62;font:13px Arial,Helvetica,sans-serif">Đang tải danh sách…</div>';
-    var url='https://api.github.com/repos/'+encodeURIComponent(repoUser)+'/'+encodeURIComponent(repoName)+'/contents/files?ref='+encodeURIComponent(branch);
-    var xhr=new XMLHttpRequest();
-    xhr.open('GET',url,true);
-    xhr.onreadystatechange=function(){
-      if(xhr.readyState!==4)return;
-      if(xhr.status<200||xhr.status>=300){error('Không lấy được danh sách. Kiểm tra kho có công khai không, nhánh main và thư mục files có tồn tại không.');return;}
-      var data; try{data=JSON.parse(xhr.responseText);}catch(e){error('Dữ liệu GitHub không đọc được.');return;}
-      if(!data||typeof data.length!=='number'){error('Không thấy thư mục files. Hãy tạo thư mục files và tải tài liệu vào đó.');return;}
-      var html='',n=0,i,f,cat,path,download,title;
-      for(i=0;i<data.length;i++){
-        f=data[i]; if(f.type!=='file'||f.name.charAt(0)==='.')continue;
-        n++; title=f.name; cat=categoryFor(title); path=f.path||('files/'+title);
-        download='https://raw.githubusercontent.com/'+encodeURIComponent(repoUser)+'/'+encodeURIComponent(repoName)+'/'+encodeURIComponent(branch)+'/'+encodePath(path);
-        html+='<article class="archive-item" data-category="'+cat.key+'" data-search="'+esc((title+' '+cat.label+' '+path).toLowerCase())+'">'+
-          '<div class="item-no">'+(n<10?'0':'')+n+'</div><div class="item-main"><span class="item-kind">'+esc(cat.label)+'</span><h3 class="item-title">'+esc(title)+'</h3><p class="item-desc">'+esc(path)+'</p></div><div class="item-action"><a class="download" href="'+esc(download)+'" target="_blank">Mở / tải ↗</a></div></article>';
-      }
-      if(!n){error('Thư mục files đang trống. Hãy tải tệp lên GitHub rồi thử lại.');return;}
-      archive.innerHTML=html; update();
-    };
-    xhr.onerror=function(){error('iPad không kết nối được GitHub API. Hãy kiểm tra mạng hoặc thử mở trang trên trình duyệt mới hơn.');};
-    try{xhr.send(null);}catch(e){error('Safari không thể gửi yêu cầu tới GitHub. Hãy mở trang bằng HTTPS, không mở file HTML trực tiếp.');}
+}
+(function () {
+  var starter = [
+    {id:"bai-mau-1",title:"Giao tiếp: nghe để hiểu",category:"Giao tiếp",author:"Bài đọc minh họa",summary:"Một mẫu minh họa cách tiêu đề, đoạn văn và trích dẫn được trình bày.",content:"<p>Giao tiếp tốt không chỉ là nói rõ điều mình nghĩ, mà còn là nhận ra điều người đối diện đang cố truyền đạt.</p><h3>1. Lắng nghe chủ động</h3><p>Tập trung vào nội dung, cảm xúc và bối cảnh. Đừng vội chuẩn bị câu trả lời khi người kia vẫn đang nói.</p><blockquote>Lắng nghe không đồng nghĩa với đồng ý; đó là bước đầu để hiểu chính xác.</blockquote><h3>2. Kiểm tra lại cách hiểu</h3><p>Hãy diễn đạt ngắn gọn điều bạn vừa hiểu và cho người kia cơ hội điều chỉnh. Cách này giảm hiểu lầm và tiết kiệm thời gian.</p>"},
+    {id:"bai-mau-2",title:"Ghi chú một ý tưởng",category:"Ghi chú",author:"Bài đọc minh họa",summary:"Ví dụ cho một bài ngắn, có thể thay thế bằng nội dung của riêng bạn.",content:"<p>Mỗi ghi chú nên giữ một ý chính. Đặt tiêu đề cụ thể để sau này có thể tìm lại mà không phải đọc toàn bộ nội dung.</p><h3>Ý chính</h3><p>Ghi điều quan trọng nhất trước, sau đó bổ sung ví dụ và câu hỏi còn bỏ ngỏ.</p>"}
+  ];
+  var books = starter.slice();
+  var active = "Tất cả";
+  var selected = null;
+  var editingId = null;
+  var selectMode = false;
+  var selectedIds = [];
+  var $ = function(id){return document.getElementById(id);};
+  function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function plain(s){var d=document.createElement("div");d.innerHTML=s||"";return (d.textContent||d.innerText||"").replace(/\s+/g," ").trim();}
+  function load(){try{var raw=localStorage.getItem("kho-doc-v1");if(raw!==null){var parsed=JSON.parse(raw);if(Object.prototype.toString.call(parsed)==="[object Array]"){books=parsed;}}}catch(e){}}
+  function persist(){try{localStorage.setItem("kho-doc-v1",JSON.stringify(books));}catch(e){alert("Trình duyệt không cho lưu lâu dài. Hãy xuất JSON để sao lưu.");}}
+  function renderFilters(){
+    var cats=["Tất cả"], i;
+    for(i=0;i<books.length;i++){if(cats.indexOf(books[i].category)<0)cats.push(books[i].category);}
+    $("filters").innerHTML="";
+    var manage=document.createElement("button");manage.id="toggleSelect";manage.className="secondary";manage.textContent=selectMode?"Hoàn tất":"Quản lý bài";manage.onclick=function(){selectMode=!selectMode;$("selectBar").className="book-selectbar"+(selectMode?" visible":"");if(!selectMode){selectedIds=[];}renderBooks();renderFilters();};$("filters").appendChild(manage);
+    cats.forEach(function(c){var b=document.createElement("button");b.className="chip"+(active===c?" active":"");b.textContent=c;b.onclick=function(){active=c;renderFilters();renderBooks();};$("filters").appendChild(b);});
   }
-  search.onkeyup=update;
-  loadButton.onclick=loadFiles;
-  for(var j=0;j<filters.length;j++){
-    filters[j].onclick=function(event){
-      if(event&&event.preventDefault)event.preventDefault(); activeFilter=this.getAttribute('data-filter');
-      for(var k=0;k<filters.length;k++)filters[k].className=filters[k].className.replace(/\s?active/g,'');
-      this.className+=' active'; update(); return false;
-    };
+  function renderBooks(){
+    var q=$("search").value.toLowerCase(), shown=[];
+    books.forEach(function(b){var hay=(b.title+" "+b.category+" "+b.summary+" "+plain(b.content)).toLowerCase();if((active==="Tất cả"||b.category===active)&&hay.indexOf(q)>=0)shown.push(b);});
+    $("total").textContent=shown.length+" BÀI";
+    $("library").innerHTML="";
+    $("library").className="bookgrid"+(selectMode?" select-mode":"");
+    updateSelectionCount();
+    if(!shown.length){$("library").innerHTML='<div class="empty">Chưa tìm thấy bài phù hợp.</div>';return;}
+    shown.forEach(function(b){
+      var card=document.createElement("div");card.className="book";
+      card.innerHTML='<div class="book-check"><label><input type="checkbox" value="'+esc(b.id)+'">Chọn bài này</label></div><div class="category">'+esc(b.category)+'</div><h3>'+esc(b.title)+'</h3><p>'+esc(b.summary||plain(b.content).slice(0,130))+'</p><div class="meta">'+esc(b.author||"")+'　·　'+(selectMode?'CHỌN ĐỂ XÓA':'MỞ BÀI ↗')+'</div>';
+      if(selectedIds.indexOf(String(b.id))>=0)card.className+=" selected-book";
+      var check=card.getElementsByTagName("input")[0];check.value=String(b.id);check.checked=selectedIds.indexOf(String(b.id))>=0;
+      check.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();};
+      var checkLabel=card.getElementsByTagName("label")[0];
+      if(checkLabel){checkLabel.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();};}
+      check.onchange=function(){if(this.checked){if(selectedIds.indexOf(String(b.id))<0)selectedIds.push(String(b.id));card.className+=" selected-book";}else{selectedIds=selectedIds.filter(function(id){return String(id)!==String(b.id);});card.className=card.className.replace(" selected-book","");}updateSelectionCount();};
+      card.onclick=function(){if(selectMode){check.checked=!check.checked;var ev=document.createEvent("HTMLEvents");ev.initEvent("change",true,false);check.dispatchEvent(ev);}else{openBook(b.id);}};$("library").appendChild(card);
+    });
   }
-})();
+  function updateSelectionCount(){
+    $("selectedCount").textContent=selectedIds.length?"Đã chọn "+selectedIds.length+" bài":"Chưa chọn bài nào";
+    $("toggleSelect").textContent=selectMode?"Hoàn tất":"Quản lý bài";
+  }
+  $("selectShown").onclick=function(){var cards=$("library").getElementsByClassName("book");for(var i=0;i<cards.length;i++){var input=cards[i].getElementsByTagName("input")[0];if(input&&selectedIds.indexOf(input.value)<0)selectedIds.push(input.value);}renderBooks();};
+  $("clearSelection").onclick=function(){selectedIds=[];renderBooks();};
+  $("deleteSelected").onclick=function(e){
+    if(e){if(e.preventDefault)e.preventDefault();if(e.stopPropagation)e.stopPropagation();}
+    /* Lấy bản sao danh sách ID trước khi cập nhật thư viện. */
+    var idsToDelete=selectedIds.map(function(id){return String(id);});
+    if(!idsToDelete.length){alert("Vui lòng chọn bài cần xóa trước.");return false;}
+    if(!window.confirm("Xóa "+idsToDelete.length+" bài đã chọn khỏi thư viện?"))return false;
+    var before=books.length;
+    books=books.filter(function(b){return idsToDelete.indexOf(String(b.id))===-1;});
+    var removed=before-books.length;
+    selectedIds=[];
+    /* Thoát chế độ chọn để tránh thẻ cũ còn hiển thị trạng thái đã chọn. */
+    selectMode=false;
+    $("selectBar").className="book-selectbar";
+    persist();
+    renderFilters();
+    renderBooks();
+    if(removed===0){alert("Không tìm thấy bài đã chọn trong dữ liệu thư viện. Hãy tải lại trang rồi thử lại.");}
+    else{alert("Đã xóa "+removed+" bài.");}
+    return false;
+  };
+  function openBook(id){
+    var b=null;books.forEach(function(x){if(x.id===id)b=x;});if(!b)return;selected=id;
+    $("readerCategory").textContent=b.category;$("readerTitle").textContent=b.title;
+    $("readerMeta").textContent=b.author||"";
+    var content=b.content||"";
+    if(!/<(p|h[1-6]|blockquote|ul|ol|pre|br)\b/i.test(content)){
+      content=content.split(/\n\s*\n/).map(function(p){return "<p>"+esc(p).replace(/\n/g,"<br>")+"</p>";}).join("");
+    }
+    $("readerBody").innerHTML=content;
+    $("editBook").style.display="inline-block";
+    $("reader").style.display="block";$("addPanel").style.display="none";
+    $("library").style.display="none";$("filters").style.display="none";
+    document.body.scrollTop=0;document.documentElement.scrollTop=0;
+  }
+  function closeReader(){$("reader").style.display="none";$("library").style.display="";$("filters").style.display="";selected=null;}
+  $("search").oninput=renderBooks;
+  $("back").onclick=closeReader;
+  $("editBook").onclick=function(){
+    var b=null;books.forEach(function(x){if(x.id===selected)b=x;});if(!b)return;
+    editingId=b.id;
+    $("formHeading").textContent="Sửa bài đọc";
+    $("newTitle").value=b.title||"";
+    $("newCategory").value=b.category||"";
+    $("newAuthor").value=b.author||"";
+    $("newSummary").value=b.summary||"";
+    $("newContent").value=b.content||"";
+    $("save").textContent="Lưu thay đổi";
+    $("addPanel").style.display="block";
+    document.body.scrollTop=0;document.documentElement.scrollTop=0;
+  };
+  $("showAdd").onclick=function(){
+    editingId=null;$("formHeading").textContent="Thêm một bài đọc";$("save").textContent="Lưu bài vào thư viện";
+    $("addPanel").style.display=$("addPanel").style.display==="none"?"block":"none";
+  };
+  $("cancelAdd").onclick=function(){$("addPanel").style.display="none";editingId=null;$("formHeading").textContent="Thêm một bài đọc";$("save").textContent="Lưu bài vào thư viện";};
+  $("save").onclick=function(){
+    var title=$("newTitle").value.replace(/^\s+|\s+$/g,"");
+    var category=$("newCategory").value.replace(/^\s+|\s+$/g,"")||"Chưa phân loại";
+    var content=$("newContent").value;
+    if(!title||!content.replace(/\s/g,"")){alert("Nhập tên bài và nội dung trước nhé.");return;}
+    var updated={title:title,category:category,author:$("newAuthor").value,summary:$("newSummary").value,content:content};
+    if(editingId){
+      for(var j=0;j<books.length;j++){if(books[j].id===editingId){books[j].title=updated.title;books[j].category=updated.category;books[j].author=updated.author;books[j].summary=updated.summary;books[j].content=updated.content;break;}}
+      selected=editingId;persist();
+      $("readerCategory").textContent=updated.category;$("readerTitle").textContent=updated.title;$("readerMeta").textContent=updated.author||"";
+      var displayContent=updated.content||"";
+      if(!/<(p|h[1-6]|blockquote|ul|ol|pre|br)\b/i.test(displayContent)){displayContent=displayContent.split(/\n\s*\n/).map(function(part){return "<p>"+esc(part).replace(/\n/g,"<br>")+"</p>";}).join("");}
+      $("readerBody").innerHTML=displayContent;
+    }else{
+      books.unshift({id:"b"+(new Date().getTime()),title:title,category:category,author:$("newAuthor").value,summary:$("newSummary").value,content:content});
+      persist();active="Tất cả";renderFilters();renderBooks();
+    }
+    $("newTitle").value="";$("newCategory").value="";$("newAuthor").value="";$("newSummary").value="";$("newContent").value="";
+    $("addPanel").style.display="none";var wasEditing=!!editingId;editingId=null;$("formHeading").textContent="Thêm một bài đọc";$("save").textContent="Lưu bài vào thư viện";if(wasEditing){alert("Đã lưu thay đổi.");}else{alert("Đã thêm bài vào thư viện trên thiết bị này.");}
+  };
+  $("export").onclick=function(){
+    var blob=new Blob([JSON.stringify(books,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download="kho-doc-backup.json";document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(url);document.body.removeChild(a);},1000);
+  };
+  $("importBtn").onclick=function(){$("importFile").click();};
+  $("importFile").onchange=function(){
+    var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();
+    r.onload=function(){try{var data=JSON.parse(r.result);if(!data||!data.length)throw new Error();books=data;persist();active="Tất cả";renderFilters();renderBooks();alert("Đã nhập thư viện.");}catch(e){alert("File JSON không đúng định dạng.");}};
+    r.readAsText(f);this.value="";
+  };
+  load();renderFilters();renderBooks();
+}());
 </script>
 </body>
 </html>
