@@ -1,0 +1,1 @@
+window.ARCHIVE_FILES = [{"name":"germany.pdf","url":"files/germany.pdf"},{"name":"txt","url":"files/txt"}];\n
