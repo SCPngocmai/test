@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f4efe6">
+<title>Kho lưu trữ — Archive No. 01</title>
+<style>
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: #f4efe6;
+  color: #332e29;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+a { color: inherit; }
+.page { max-width: 980px; margin: 0 auto; padding: 22px 20px 36px; }
+.masthead {
+  border-bottom: 1px solid #cfc2b2;
+  padding: 4px 0 15px;
+  overflow: hidden;
+}
+.wordmark { float: left; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; letter-spacing: 2px; color: #8d4938; }
+.issue { float: right; font-family: Arial, Helvetica, sans-serif; font-size: 11px; letter-spacing: 1px; color: #76695d; }
+.clear { clear: both; }
+.hero {
+  position: relative;
+  margin: 25px 0 30px;
+  padding: 28px 26px 25px;
+  background: #e8dfd1;
+  border-radius: 3px 56px 3px 3px;
+  overflow: hidden;
+}
+.hero:after {
+  content: "A";
+  position: absolute;
+  right: 20px;
+  bottom: -80px;
+  font-family: Georgia, serif;
+  font-size: 300px;
+  line-height: 1;
+  color: rgba(151, 76, 56, .08);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; max-width: 610px; }
+.eyebrow { font-family: Arial, Helvetica, sans-serif; color: #96513f; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+h1 { margin: 12px 0 12px; font-size: 42px; line-height: 1.06; letter-spacing: -1.5px; font-weight: normal; }
+h1 em { color: #984d3a; font-weight: normal; }
+.hero-copy { max-width: 440px; margin: 0; color: #6c5f53; font-size: 16px; }
+.hero-foot { margin-top: 24px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; letter-spacing: 1px; color: #7a6b5d; }
+.hero-foot span { color: #9b4d3a; padding: 0 7px; }
+.introline { margin: 0 2px 18px; overflow: hidden; }
+.introline h2 { float: left; margin: 0; font-size: 24px; line-height: 1.2; font-weight: normal; letter-spacing: -.4px; }
+.introline p { float: right; margin: 6px 0 0; font-family: Arial, Helvetica, sans-serif; color: #85786c; font-size: 12px; }
+.toolbar { margin: 0 0 14px; padding: 10px 0; border-top: 1px solid #d9cfc2; border-bottom: 1px solid #d9cfc2; }
+.search-wrap { display: inline-block; width: 52%; min-width: 210px; vertical-align: middle; }
+.search {
+  width: 100%; border: 0; border-bottom: 1px solid #b7a899; background: transparent;
+  border-radius: 0; padding: 9px 2px; font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px; color: #332e29; outline: none; -webkit-appearance: none;
+}
+.search:focus { border-bottom: 2px solid #9a4e3a; }
+.filters { display: inline-block; vertical-align: middle; margin-left: 10px; }
+.filter {
+  display: inline-block; margin: 3px 3px 3px 0; padding: 7px 11px;
+  border: 1px solid #d4c7b8; border-radius: 20px; background: transparent;
+  color: #75685d; text-decoration: none; font: 12px Arial, Helvetica, sans-serif;
+}
+.filter.active, .filter:focus { background: #974d3a; border-color: #974d3a; color: #fffaf3; outline: none; }
+.archive-list { border-top: 1px solid #cfc2b2; }
+.archive-item {
+  display: table; width: 100%; table-layout: fixed;
+  padding: 17px 2px 17px; border-bottom: 1px solid #d9cfc2;
+}
+.item-no, .item-main, .item-action { display: table-cell; vertical-align: middle; }
+.item-no { width: 65px; color: #a45b46; font-size: 20px; font-style: italic; }
+.item-main { padding-right: 12px; }
+.item-kind { display: block; margin-bottom: 3px; font: bold 10px Arial, Helvetica, sans-serif; letter-spacing: 1.4px; color: #9a7667; text-transform: uppercase; }
+.item-title { margin: 0; font-size: 20px; font-weight: normal; line-height: 1.25; }
+.item-desc { margin: 5px 0 0; color: #7a6e62; font: 13px/1.5 Arial, Helvetica, sans-serif; }
+.item-action { width: 115px; text-align: right; }
+.download {
+  display: inline-block; min-width: 100px; padding: 10px 12px; text-align: center;
+  background: #974d3a; border: 1px solid #974d3a; border-radius: 2px;
+  color: #fffaf3; text-decoration: none; font: bold 12px Arial, Helvetica, sans-serif;
+}
+.download:focus, .download:active { background: #713a2d; outline: 2px solid #c8a18f; }
+.download.secondary { background: transparent; color: #974d3a; }
+.empty { display: none; padding: 25px 4px; color: #7a6e62; font-size: 15px; }
+.archive-status { padding: 18px 4px; color: #7a6e62; font: 13px/1.6 Arial, Helvetica, sans-serif; }
+.side-note {
+  margin: 30px 0 0; padding: 18px 20px; background: #e9e1d5;
+  border-left: 3px solid #a45640; overflow: hidden;
+}
+.side-note strong { display: block; font-size: 17px; font-weight: normal; margin-bottom: 3px; }
+.side-note p { margin: 0; color: #74685c; font: 13px/1.65 Arial, Helvetica, sans-serif; }
+.bottom { margin-top: 32px; padding-top: 13px; border-top: 1px solid #cfc2b2; color: #897c70; font: 10px Arial, Helvetica, sans-serif; letter-spacing: 1px; overflow: hidden; }
+.bottom .left { float: left; }
+.bottom .right { float: right; color: #9a4e3a; }
+@media (max-width: 560px) {
+  .page { padding: 16px 14px 28px; }
+  .hero { padding: 24px 19px 22px; margin-top: 19px; border-top-right-radius: 42px; }
+  h1 { font-size: 35px; }
+  .hero:after { right: -6px; font-size: 230px; bottom: -62px; }
+  .introline h2 { float: none; }
+  .introline p { float: none; margin-top: 5px; }
+  .search-wrap { display: block; width: 100%; }
+  .filters { margin: 8px 0 0; }
+  .item-no { width: 40px; font-size: 17px; }
+  .item-title { font-size: 18px; }
+  .item-desc { font-size: 12px; }
+  .item-action { width: 84px; }
+  .download { min-width: 76px; padding: 9px 5px; font-size: 11px; }
+  .archive-item { padding: 15px 0; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div class="wordmark">ARCHIVE / PERSONAL COLLECTION</div>
+    <div class="issue">BỘ SƯU TẬP SỐ 01</div>
+    <div class="clear"></div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Một nơi để cất giữ</div>
+      <h1>Kho lưu trữ<br><em>những điều hữu ích.</em></h1>
+      <p class="hero-copy">Tài liệu, ghi chú và những tệp muốn giữ lại — được sắp xếp gọn gàng để tìm thấy khi cần.</p>
+      <div class="hero-foot">LƯU TRỮ <span>✳</span> SẮP XẾP <span>✳</span> MANG THEO</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="introline">
+      <h2>Danh mục lưu trữ</h2>
+      <p id="count">03 TÀI LIỆU</p>
+      <div class="clear"></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input class="search" id="search" type="search" placeholder="Tìm theo tên hoặc định dạng…" aria-label="Tìm tài liệu">
+      </div>
+      <div class="filters" aria-label="Lọc tài liệu">
+        <a href="#" class="filter active" data-filter="all">Tất cả</a>
+        <a href="#" class="filter" data-filter="doc">Tài liệu</a>
+        <a href="#" class="filter" data-filter="note">Ghi chú</a>
+        <a href="#" class="filter" data-filter="web">HTML</a>
+      </div>
+    </div>
+
+    <div class="archive-list" id="archive"></div>
+    <div class="archive-status" id="status">Đang tải danh sách tài liệu…</div>
+    <div class="empty" id="empty">Chưa tìm thấy tài liệu phù hợp. Thử một từ khóa khác nhé.</div>
+
+    <aside class="side-note">
+      <strong>Một ghi chú nhỏ</strong>
+      <p>Danh sách được lấy tự động từ thư mục <b>files</b> trên GitHub. Chỉ cần tải tệp lên thư mục đó; tên tệp sẽ tự hiện trên trang. Tệp nằm trong thư mục con sẽ không được liệt kê.</p>
+    </aside>
+  </main>
+
+  <footer class="bottom">
+    <span class="left">KHO LƯU TRỮ CÁ NHÂN</span>
+    <span class="right">KEEP WHAT MATTERS.</span>
+    <div class="clear"></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var search = document.getElementById('search');
+  var archive = document.getElementById('archive');
+  var filters = document.getElementsByClassName('filter');
+  var empty = document.getElementById('empty');
+  var count = document.getElementById('count');
+  var status = document.getElementById('status');
+  var activeFilter = 'all';
+  var allFiles = [];
+
+  function getRepository() {
+    var host = window.location.hostname;
+    var path = window.location.pathname.split('/');
+    var owner, repo;
+    if (host.toLowerCase().slice(-10) === '.github.io') {
+      owner = host.split('.')[0];
+      repo = path.length > 1 ? path[1] : '';
+      if (!repo || repo.toLowerCase() === 'index.html') repo = owner + '.github.io';
+      return { owner: owner, repo: repo };
+    }
+    return null;
+  }
+
+  function extension(name) {
+    var pos = name.lastIndexOf('.');
+    return pos > -1 ? name.substring(pos + 1).toLowerCase() : '';
+  }
+
+  function categoryFor(name) {
+    var ext = extension(name);
+    if (ext === 'html' || ext === 'htm') return 'web';
+    if (ext === 'txt' || ext === 'md' || ext === 'rtf') return 'note';
+    return 'doc';
+  }
+
+  function kindFor(name) {
+    var ext = extension(name);
+    if (!ext) return 'TỆP';
+    return ext.toUpperCase() + (categoryFor(name) === 'web' ? ' / NGOẠI TUYẾN' : categoryFor(name) === 'note' ? ' / GHI CHÚ' : ' / TÀI LIỆU');
+  }
+
+  function make(tag, className, text) {
+    var el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined) el.appendChild(document.createTextNode(text));
+    return el;
+  }
+
+  function render() {
+    var query = (search.value || '').toLowerCase();
+    var visible = 0;
+    archive.innerHTML = '';
+    for (var i = 0; i < allFiles.length; i++) {
+      var file = allFiles[i];
+      var category = categoryFor(file.name);
+      if (activeFilter !== 'all' && activeFilter !== category) continue;
+      if (query && file.name.toLowerCase().indexOf(query) === -1) continue;
+      visible++;
+      var article = make('article', 'archive-item');
+      article.setAttribute('data-category', category);
+      var no = make('div', 'item-no', ('0' + visible).slice(-2));
+      var main = make('div', 'item-main');
+      main.appendChild(make('span', 'item-kind', kindFor(file.name)));
+      main.appendChild(make('h3', 'item-title', file.name));
+      main.appendChild(make('p', 'item-desc', 'Tệp được lưu trong thư mục files.'));
+      var action = make('div', 'item-action');
+      var link = make('a', 'download', 'Tải xuống ↗');
+      link.href = file.url;
+      link.setAttribute('download', file.name);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
+      action.appendChild(link);
+      article.appendChild(no);
+      article.appendChild(main);
+      article.appendChild(action);
+      archive.appendChild(article);
+    }
+    empty.style.display = visible ? 'none' : 'block';
+    count.innerHTML = (visible < 10 ? '0' : '') + visible + ' TÀI LIỆU';
+  }
+
+  function showError(message) {
+    status.style.display = 'block';
+    status.innerHTML = message;
+    archive.style.display = 'none';
+    count.innerHTML = '00 TÀI LIỆU';
+  }
+
+  function loadFiles() {
+    var repoInfo = getRepository();
+    if (!repoInfo) {
+      showError('Web chưa xác định được kho GitHub. Hãy mở trang này từ địa chỉ GitHub Pages (tên-người-dùng.github.io/tên-kho/) để tự động lấy danh sách tệp.');
+      return;
+    }
+    var xhr = new XMLHttpRequest();
+    var api = 'https://api.github.com/repos/' + encodeURIComponent(repoInfo.owner) + '/' + encodeURIComponent(repoInfo.repo) + '/contents/files';
+    xhr.open('GET', api, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) return;
+      if (xhr.status < 200 || xhr.status >= 300) {
+        showError('Không lấy được danh sách tệp. Kiểm tra kho GitHub có công khai không và đã có thư mục <b>files</b> chưa.');
+        return;
+      }
+      var data;
+      try { data = JSON.parse(xhr.responseText); } catch (e) {
+        showError('Danh sách tệp từ GitHub không đọc được.');
+        return;
+      }
+      if (!data || Object.prototype.toString.call(data) !== '[object Array]') {
+        showError('Đường dẫn <b>files</b> chưa phải là thư mục hợp lệ trong kho GitHub.');
+        return;
+      }
+      allFiles = [];
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].type === 'file' && data[i].name && data[i].download_url) {
+          allFiles.push({ name: data[i].name, url: data[i].download_url });
+        }
+      }
+      allFiles.sort(function (a, b) { return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0); });
+      status.style.display = 'none';
+      archive.style.display = 'block';
+      render();
+    };
+    xhr.onerror = function () {
+      showError('Không kết nối được GitHub để lấy danh sách. Kiểm tra kết nối mạng rồi tải lại trang.');
+    };
+    xhr.send(null);
+  }
+
+  search.onkeyup = render;
+  search.oninput = render;
+  for (var j = 0; j < filters.length; j++) {
+    filters[j].onclick = function (event) {
+      if (event && event.preventDefault) event.preventDefault();
+      activeFilter = this.getAttribute('data-filter');
+      for (var k = 0; k < filters.length; k++) {
+        filters[k].className = filters[k].className.replace(/\s?active/g, '');
+      }
+      this.className += ' active';
+      render();
+      return false;
+    };
+  }
+  loadFiles();
+})();
+</script>
+</body>
+</html>
