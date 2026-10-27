@@ -4,350 +4,212 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Đọc để hiểu, học để nhớ</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f3eddf">
+<title>50languages Lite — German Desk</title>
 <style>
-  * { box-sizing: border-box; }
-  body { margin:0; background:#f2eadc; color:#3b2d25; font-family:Georgia,"Times New Roman",serif; }
-  header { padding:12px 18px 10px; border:2px solid #b58a6b; border-bottom:3px solid #9d4936; background:#e9dece; border-radius:0 0 26px 26px; box-shadow:0 5px 16px rgba(83,57,37,.10); }
-  .eyebrow { font: bold 10px Arial,sans-serif; letter-spacing:2px; color:#a34c38; text-transform:uppercase; }
-  h1 { margin:9px 0 7px; font-size:34px; font-weight:normal; letter-spacing:-1.2px; color:#854633; }
-  .sub { font:13px Arial,sans-serif; color:#796d61; line-height:1.5; }
-  main { max-width:900px; margin:0 auto; padding:20px 17px; }
-  .toolbar { display:flex; gap:8px; margin-bottom:7px; }
-  .top-tools { margin-top:8px; padding:8px; background:rgba(255,250,242,.42); border:1px solid #d3b99f; border-radius:16px; }
-  .data-tools { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
-  .data-label { font:11px Arial,sans-serif; color:#8a6c56; letter-spacing:.5px; margin-right:3px; }
-  button.mini-data { padding:8px 11px; font-size:12px; box-shadow:none; }
-  input, select, textarea { min-width:0; font:16px Arial,sans-serif; color:#342b25; background:#fffaf2; border:1px solid #d7c9b8; border-radius:14px; padding:13px 14px; }
-  #search { flex:1; width:100%; }
-  button { border:0; border-radius:14px; background:#9d4936; color:#fffaf2; padding:12px 15px; font:bold 13px Arial,sans-serif; cursor:pointer; box-shadow:0 3px 8px rgba(83,57,37,.08); }
-  button.secondary { background:#e7dccd; color:#4b3c32; border:1px solid #d7c9b8; }
-  .sectionline { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #d7c9b8; padding-bottom:9px; margin:20px 0 12px; }
-  .sectionline h2 { font-weight:700; }
-  h2 { font-size:19px; font-weight:normal; margin:0; }
-  .count { font:11px Arial,sans-serif; color:#89796a; }
-  .filters { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
-  .chip { background:#eee2d2; border:1px solid #d6c3ad; color:#665448; padding:9px 13px; font-size:12px; border-radius:20px; }
-  .chip.active { background:#854633; color:#fffaf2; border-color:#854633; }
-  .book-selectbar { display:none; gap:8px; flex-wrap:wrap; margin:0 0 12px; padding:12px; border:1px solid #d7c1aa; border-radius:14px; background:#eadbca; }
-  .book-selectbar.visible { display:flex; }
-  .book-check { display:none; margin-bottom:10px; font:13px Arial,sans-serif; color:#854633; }
-  .select-mode .book-check { display:block; }
-  .book-check input { width:18px; height:18px; vertical-align:middle; margin-right:7px; }
-  .book.selected-book { border:2px solid #9d4936; background:#f3e4d2; }
-  .book { background:rgba(255,250,242,.94); border:1px solid #e0d4c5; border-left:3px solid #b66c51; border-radius:5px 17px 17px 5px; padding:17px; margin-bottom:12px; cursor:pointer; box-shadow:0 5px 15px rgba(83,57,37,.05); }
-  .book .category { font:bold 10px Arial,sans-serif; letter-spacing:1.4px; color:#a34c38; text-transform:uppercase; }
-  .book h3 { font-size:21px; font-weight:normal; margin:7px 0; }
-  .book p { font-size:14px; line-height:1.55; color:#75675b; margin:0 0 10px; }
-  .meta { font:11px Arial,sans-serif; color:#8b7c6c; }
-  .reader { display:none; background:#fffaf2; border:1px solid #e0d4c5; border-radius:5px 22px 22px 5px; padding:23px 19px; margin-top:12px; box-shadow:0 8px 24px rgba(83,57,37,.06); }
-  .reader h2 { font-size:28px; line-height:1.2; margin:10px 0; }
-  .reader .body { font-size:18px; line-height:1.8; overflow-wrap:break-word; }
-  .reader .body h3 { font-size:20px; font-weight:normal; margin-top:25px; }
-  .reader .body p { margin:0 0 17px; }
-  .reader .body blockquote { border-left:3px solid #a34c38; margin:20px 0; padding:4px 0 4px 14px; color:#80614f; }
-  .admin { margin-top:28px; border-top:2px solid #a34c38; padding-top:18px; background:rgba(255,250,242,.6); border-radius:4px 20px 20px 4px; padding:20px; }
-  .admin p, .hint { font:13px/1.6 Arial,sans-serif; color:#796d61; }
-  .formgrid { display:grid; grid-template-columns:1fr; gap:9px; }
-  textarea { width:100%; min-height:180px; line-height:1.5; resize:vertical; }
-  .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-  .empty { padding:20px; color:#88796b; font:14px Arial,sans-serif; background:#eee5d8; }
-  footer { text-align:center; padding:24px 12px 34px; font:11px Arial,sans-serif; color:#9a8a79; letter-spacing:1px; }
-  @media (min-width:600px) {
-    header { padding:12px calc((100% - 720px)/2) 10px; }
-    h1 { font-size:42px; }
-    .bookgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .book { margin:0; }
-    .formgrid { grid-template-columns:1fr 1fr; }
-    .formgrid .wide { grid-column:1 / -1; }
-  }
-
-.editor-tools { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:2px 0 0; }
-.editor-label { color:#8b6d56; font-size:12px; margin-right:4px; }
-.mini-tool { padding:7px 10px !important; min-height:32px; font-size:12px !important; border-radius:10px !important; }
-#newContent { min-height:190px; line-height:1.65; }
-@media (max-width:600px) {
-  .editor-tools { gap:6px; }
-  .mini-tool { padding:7px 8px !important; }
-  header { padding:10px 12px 8px; }
-  h1 { font-size:29px; }
-  .top-tools { padding:7px; }
-  .poem-lines { font-size:16px !important; line-height:1.6 !important; }
-  .poem-lines > div:not(:last-child) { font-size:15px !important; gap:8px !important; }
-  .toolbar { gap:6px; }
-  .toolbar input { padding:11px 10px; }
-  .toolbar button { padding:10px 11px; white-space:nowrap; }
-  .data-tools { gap:6px; }
+/* Built for older Safari / iOS 9: no external fonts, frameworks, or modern layout dependencies. */
+html { -webkit-text-size-adjust: 100%; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: #f3eddf; color: #30271f;
+  font-family: Georgia, "Times New Roman", serif; font-size: 18px; line-height: 1.45;
+}
+a { color: #8d3428; }
+.wrap { max-width: 900px; margin: 0 auto; padding: 18px; }
+.topline { border-top: 5px solid #8d3428; padding-top: 10px; color: #6b5c4c; font: bold 12px Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+header { border-bottom: 1px solid #cbbda8; padding-bottom: 20px; margin-bottom: 22px; }
+h1 { font-size: 42px; line-height: 1.02; font-weight: normal; letter-spacing: -1.5px; margin: 15px 0 10px; }
+h1 span { color: #8d3428; }
+.subtitle { color: #6b5c4c; font-size: 17px; margin: 0; }
+.edition { font: bold 11px Arial, sans-serif; color: #8d3428; letter-spacing: 1.4px; text-transform: uppercase; margin-top: 16px; }
+.hero { background: #e6dac5; padding: 20px; border-left: 5px solid #8d3428; margin-bottom: 22px; }
+.hero .eyebrow { font: bold 11px Arial, sans-serif; color: #8d3428; letter-spacing: 1.5px; text-transform: uppercase; }
+.hero h2 { margin: 7px 0; font-size: 27px; font-weight: normal; }
+.hero p { margin: 8px 0 16px; }
+.actions { margin: 0 -5px; }
+.btn {
+  display: inline-block; margin: 4px; padding: 12px 15px; min-height: 46px;
+  background: #8d3428; color: #fff8ed; text-decoration: none; border: 1px solid #8d3428;
+  font: bold 15px Arial, sans-serif; line-height: 20px; -webkit-appearance: none;
+}
+.btn.secondary { background: #f8f3e9; color: #5c2b23; border-color: #b89c85; }
+.section-head { border-bottom: 1px solid #cbbda8; margin: 25px 0 12px; padding-bottom: 8px; }
+.section-head h2 { margin: 0; font-size: 25px; font-weight: normal; }
+.section-head p { margin: 4px 0 0; color: #756555; font-size: 14px; }
+.grid { font-size: 0; margin: 0 -6px; }
+.tile {
+  display: inline-block; vertical-align: top; width: 48%; margin: 1%;
+  background: #faf6ed; border: 1px solid #d9cbb7; padding: 14px; font-size: 16px;
+}
+.tile .num { font: bold 11px Arial, sans-serif; letter-spacing: 1.5px; color: #8d3428; }
+.tile h3 { margin: 5px 0 7px; font-size: 21px; font-weight: normal; }
+.tile p { margin: 0 0 10px; color: #6b5c4c; font-size: 14px; }
+.tile a { font: bold 14px Arial, sans-serif; }
+.progress-row { margin: 8px 0; padding: 10px 0; border-bottom: 1px solid #dfd3c1; }
+.progress-row label { display: block; }
+input[type=checkbox] { width: 22px; height: 22px; vertical-align: middle; margin-right: 9px; }
+textarea {
+  width: 100%; min-height: 120px; padding: 12px; border: 1px solid #cbbda8;
+  background: #faf6ed; color: #30271f; font: 17px Georgia, serif; border-radius: 0;
+}
+.smallbtn { padding: 10px 13px; min-height: 42px; border: 1px solid #b89c85; background: #e6dac5; color: #30271f; font: bold 14px Arial, sans-serif; }
+.notice { background: #eee3d2; padding: 12px 14px; font-size: 14px; color: #5c4b3b; }
+footer { margin-top: 30px; border-top: 1px solid #cbbda8; padding-top: 15px; color: #756555; font-size: 13px; }
+@media screen and (max-width: 560px) {
+  .wrap { padding: 13px; }
+  h1 { font-size: 35px; }
+  .tile { width: 98%; margin: 1%; }
+  .btn { display: block; text-align: center; }
 }
 </style>
 </head>
 <body>
-<header style="position:relative;overflow:hidden">
-  <div style="max-width:720px;margin:0 auto">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;color:#9d4936">
-      <span style="font:22px Georgia,serif;line-height:1">✳</span>
-      <span style="font:10px Arial,sans-serif;letter-spacing:2px">GÓC CỦA NHỮNG TRANG MỞ</span>
-      <span style="height:1px;background:#d1bda7;flex:1"></span>
-    </div>
-    <div style="margin-bottom:8px;padding:9px 14px 8px;background:#f1e5d4;border:1px solid #ddcbb6;border-radius:16px;box-shadow:0 3px 10px rgba(83,57,37,.04)">
-      <div class="poem-lines" style="color:#6e5141;font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.55">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;white-space:nowrap;font-size:17px;margin:0 0 4px 0"><span>Kẻ lữ hành <em>say giấc</em> giữa ngân hà,</span><span>Tâm phiêu du qua vạn nẻo bao la.</span></div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;white-space:nowrap;font-size:17px"><span>Mắt <em>rong ruổi</em> muôn phương trời viễn mộng,</span><span>Mãi mê tìm những thế giới ngoài xa.</span></div>
-        <div style="text-align:right;margin-top:5px;color:#9d4936;font-size:11px;letter-spacing:1.5px"><span style="display:inline-block;width:30px;border-top:1px solid #b66c51;vertical-align:middle;margin-right:9px"></span><strong><em>aurora</em></strong></div>
-      </div>
-    </div>
-    <div class="top-tools">
-      <div class="toolbar">
-        <input id="search" type="search" placeholder="Tìm bài đọc hoặc từ khóa…" aria-label="Tìm bài đọc">
-        <button id="showAdd">+ Thêm bài</button>
-      </div>
-      <div class="data-tools">
-        <span class="data-label">Thư viện</span>
-        <button class="secondary mini-data" id="export">↑ Xuất</button>
-        <button class="secondary mini-data" id="importBtn">↓ Nhập</button>
-        <input id="importFile" type="file" accept=".json,application/json" style="display:none">
-      </div>
-    </div>
-    <div style="height:1px;background:#d7c9b8;margin-top:8px"></div>
-  </div>
-</header>
-<main>
-  <div class="sectionline"><h2>Chủ đề</h2><span class="count">CHỌN CHỦ ĐỀ</span></div>
-  <div id="filters" class="filters"></div>
-  <div class="sectionline"><h2>Trong thư viện</h2><span id="total" class="count"></span></div>
-  <div id="selectBar" class="book-selectbar">
-    <button id="selectShown" class="secondary">Chọn tất cả bài đang hiện</button>
-    <button id="clearSelection" class="secondary">Bỏ chọn</button>
-    <button id="deleteSelected">Xóa bài đã chọn</button>
-    <span id="selectedCount" class="count" style="align-self:center"></span>
-  </div>
-  <div id="library" class="bookgrid"></div>
-  <article id="reader" class="reader">
-    <div class="actions" style="margin-top:0;margin-bottom:18px">
-      <button class="secondary" id="back">← Quay lại thư viện</button>
-      <button id="editBook">✎ Sửa bài</button>
-    </div>
-    <div id="readerCategory" class="eyebrow" style="margin-top:22px"></div>
-    <h2 id="readerTitle"></h2>
-    <div id="readerMeta" class="meta"></div>
-    <div id="readerBody" class="body"></div>
-  </article>
+<div class="wrap">
+  <header>
+    <div class="topline">A small language-learning desk</div>
+    <h1>50languages <span>Lite</span></h1>
+    <p class="subtitle">Một góc học tiếng Đức gọn nhẹ cho iPad đời cũ.</p>
+    <div class="edition">iPad 2 · Safari iOS 9.3.x · No external libraries</div>
+  </header>
 
-  <section id="addPanel" class="admin" style="display:none">
-    <h2 id="formHeading" style="font-size:25px;margin:8px 0">Thêm một bài đọc</h2>
-    <p>Điền thông tin, dán nội dung rồi bấm lưu. Bài được lưu trên trình duyệt này. Hãy xuất dữ liệu để sao lưu hoặc chuyển sang thiết bị khác.</p>
-    <div class="formgrid">
-      <input id="newTitle" class="wide" placeholder="Tên bài đọc">
-      <input id="newCategory" placeholder="Chủ đề, ví dụ: Tâm lý học">
-      <input id="newAuthor" placeholder="Tác giả / nguồn (không bắt buộc)">
-      <input id="newSummary" class="wide" placeholder="Mô tả ngắn để hiện ở thư viện">
-      <div class="wide editor-tools" aria-label="Công cụ định dạng">
-        <span class="editor-label">Định dạng nhanh</span>
-        <button type="button" class="secondary mini-tool" onclick="formatContent('h3')">Tiêu đề mục</button>
-        <button type="button" class="secondary mini-tool" onclick="formatContent('strong')"><strong>Chữ đậm</strong></button>
-        <button type="button" class="secondary mini-tool" onclick="formatContent('em')"><em>Chữ nghiêng</em></button>
-        <button type="button" class="secondary mini-tool" onclick="formatContent('blockquote')">Trích dẫn</button>
-        <button type="button" class="secondary mini-tool" onclick="formatContent('ul')">Danh sách</button>
-        <button type="button" class="secondary mini-tool" onclick="formatContent('p')">Đoạn văn</button>
-      </div>
-      <textarea id="newContent" class="wide" placeholder="Dán hoặc nhập nội dung bài đọc tại đây. Để định dạng, hãy chọn phần chữ rồi bấm nút phía trên. Nếu chưa chọn chữ, nút sẽ chèn một mẫu để tiện chỉnh sửa."></textarea>
-    </div>
+  <section class="hero">
+    <div class="eyebrow">Heute lernen / Học hôm nay</div>
+    <h2>Deutsch, Schritt für Schritt.</h2>
+    <p>Học từng bài ngắn, nghe câu mẫu, rồi ôn lại. Các nút bên dưới mở nội dung gốc của 50languages trong Safari.</p>
     <div class="actions">
-      <button id="save">Lưu bài vào thư viện</button>
-      <button class="secondary" id="cancelAdd">Hủy</button>
+      <a class="btn" href="https://50languages.com/german-for-free">Mở khóa học tiếng Đức</a>
+      <a class="btn secondary" href="https://50languages.com/">Trang chủ 50languages</a>
     </div>
-    <p class="hint">Mẹo nhỏ: thỉnh thoảng hãy xuất dữ liệu để giữ một bản sao an toàn.</p>
   </section>
-</main>
-<footer>ĐỌC CHẬM · GIỮ ĐIỀU ĐÁNG NHỚ</footer>
-<script>
-function formatContent(tag) {
-  var area = document.getElementById("newContent");
-  if (!area) return;
-  var start = area.selectionStart || 0;
-  var end = area.selectionEnd || 0;
-  var value = area.value;
-  var selected = value.substring(start, end);
-  var before = value.substring(0, start);
-  var after = value.substring(end);
-  var insert = "";
-  var cursorOffset = 0;
 
-  if (tag === "ul") {
-    if (selected) {
-      var lines = selected.split(/\\r?\\n/);
-      for (var i = 0; i < lines.length; i++) lines[i] = "<li>" + lines[i] + "</li>";
-      insert = "<ul>\\n" + lines.join("\\n") + "\\n</ul>";
-    } else {
-      insert = "<ul>\\n<li>Mục thứ nhất</li>\\n<li>Mục thứ hai</li>\\n</ul>";
-    }
-  } else {
-    var open = "<" + tag + ">";
-    var close = "</" + tag + ">";
-    if (selected) {
-      insert = open + selected + close;
-    } else {
-      var samples = {
-        "h3": "Tiêu đề mục",
-        "strong": "chữ cần in đậm",
-        "em": "chữ cần in nghiêng",
-        "blockquote": "Nội dung trích dẫn",
-        "p": "Nội dung đoạn văn"
-      };
-      var sample = samples[tag] || "Nội dung";
-      insert = open + sample + close;
-      cursorOffset = open.length;
-    }
-  }
+  <div class="section-head">
+    <h2>Ba lối vào chính</h2>
+    <p>Không nhúng trang gốc vào khung — mở trực tiếp để giảm lỗi trên Safari cũ.</p>
+  </div>
+  <div class="grid">
+    <div class="tile">
+      <div class="num">01 / LESEN</div>
+      <h3>Bài học 100 chủ đề</h3>
+      <p>Câu giao tiếp thường ngày kèm văn bản và phần nghe.</p>
+      <a href="https://50languages.com/german-for-free">Mở bài học →</a>
+    </div>
+    <div class="tile">
+      <div class="num">02 / HÖREN</div>
+      <h3>Âm thanh MP3</h3>
+      <p>Tìm trang tải âm thanh chính thức. Nếu Safari mở tệp thay vì tải, thử nhấn giữ liên kết khi trang có cung cấp.</p>
+      <a href="https://50languages.com/en">Tìm mục MP3 →</a>
+    </div>
+    <div class="tile">
+      <div class="num">03 / WIEDERHOLEN</div>
+      <h3>Ôn tập</h3>
+      <p>Dùng danh sách bên dưới để đánh dấu bài đã học trên thiết bị này.</p>
+      <a href="#tracker">Đến bảng theo dõi ↓</a>
+    </div>
+    <div class="tile">
+      <div class="num">04 / NOTIZEN</div>
+      <h3>Sổ tay cá nhân</h3>
+      <p>Lưu từ mới, câu mẫu hoặc những câu cần luyện phát âm.</p>
+      <a href="#notes">Mở sổ tay ↓</a>
+    </div>
+  </div>
 
-  area.value = before + insert + after;
-  area.focus();
-  if (selected) {
-    area.setSelectionRange(start + insert.length, start + insert.length);
-  } else if (cursorOffset) {
-    area.setSelectionRange(start + cursorOffset, start + cursorOffset + (tag === "h3" ? 13 : tag === "strong" ? 15 : tag === "em" ? 17 : tag === "blockquote" ? 20 : 16));
-  } else {
-    area.setSelectionRange(start + insert.length, start + insert.length);
-  }
-}
+  <div class="section-head" id="tracker">
+    <h2>Bảng theo dõi 100 bài</h2>
+    <p>Đánh dấu những bài đã hoàn thành. Tiến độ được lưu cục bộ nếu trình duyệt cho phép.</p>
+  </div>
+  <div class="notice" id="progressText">Đã hoàn thành 0/100 bài.</div>
+  <div id="lessonList"></div>
+  <button class="smallbtn" type="button" onclick="clearProgress()">Xóa dấu hoàn thành</button>
+
+  <div class="section-head" id="notes">
+    <h2>Sổ tay tiếng Đức</h2>
+    <p>Ghi chú được lưu trên thiết bị này; không đồng bộ sang thiết bị khác.</p>
+  </div>
+  <textarea id="notesText" placeholder="Ví dụ: Guten Morgen — Chào buổi sáng&#10;Ich heiße ... — Tôi tên là ..."></textarea>
+  <p><button class="smallbtn" type="button" onclick="saveNotes()">Lưu ghi chú</button>
+     <button class="smallbtn" type="button" onclick="clearNotes()">Xóa ghi chú</button></p>
+  <div id="saveStatus" class="notice">Ghi chú chưa thay đổi.</div>
+
+  <div class="section-head">
+    <h2>Nếu trang gốc vẫn lỗi</h2>
+  </div>
+  <div class="notice">
+    <p><strong>Trang trắng / không kết nối:</strong> kiểm tra Wi‑Fi, ngày giờ của iPad và thử mở lại liên kết HTTPS.</p>
+    <p><strong>Không nghe được:</strong> chạm nút phát ngay trên trang gốc; kiểm tra âm lượng và công tắc im lặng. Safari iOS không cho trang tự phát âm thanh đáng tin cậy.</p>
+    <p><strong>Không tải được MP3:</strong> thử mở tệp trong tab riêng hoặc tải bằng máy tính rồi chuyển sang iPad qua phương thức phù hợp. Bản giao diện này không thể sửa lỗi máy chủ hay chứng chỉ bảo mật.</p>
+  </div>
+
+  <footer>
+    <p><strong>50languages Lite</strong> là giao diện hỗ trợ độc lập, không phải sản phẩm chính thức của 50LANGUAGES.</p>
+    <p>Nội dung bài học và âm thanh thuộc website gốc. Kết nối mạng vẫn cần thiết để mở nội dung trực tuyến.</p>
+  </footer>
+</div>
+<script type="text/javascript">
 (function () {
-  var starter = [
-    {id:"bai-mau-1",title:"Giao tiếp: nghe để hiểu",category:"Giao tiếp",author:"Bài đọc minh họa",summary:"Một mẫu minh họa cách tiêu đề, đoạn văn và trích dẫn được trình bày.",content:"<p>Giao tiếp tốt không chỉ là nói rõ điều mình nghĩ, mà còn là nhận ra điều người đối diện đang cố truyền đạt.</p><h3>1. Lắng nghe chủ động</h3><p>Tập trung vào nội dung, cảm xúc và bối cảnh. Đừng vội chuẩn bị câu trả lời khi người kia vẫn đang nói.</p><blockquote>Lắng nghe không đồng nghĩa với đồng ý; đó là bước đầu để hiểu chính xác.</blockquote><h3>2. Kiểm tra lại cách hiểu</h3><p>Hãy diễn đạt ngắn gọn điều bạn vừa hiểu và cho người kia cơ hội điều chỉnh. Cách này giảm hiểu lầm và tiết kiệm thời gian.</p>"},
-    {id:"bai-mau-2",title:"Ghi chú một ý tưởng",category:"Ghi chú",author:"Bài đọc minh họa",summary:"Ví dụ cho một bài ngắn, có thể thay thế bằng nội dung của riêng bạn.",content:"<p>Mỗi ghi chú nên giữ một ý chính. Đặt tiêu đề cụ thể để sau này có thể tìm lại mà không phải đọc toàn bộ nội dung.</p><h3>Ý chính</h3><p>Ghi điều quan trọng nhất trước, sau đó bổ sung ví dụ và câu hỏi còn bỏ ngỏ.</p>"}
-  ];
-  var books = starter.slice();
-  var active = "Tất cả";
-  var selected = null;
-  var editingId = null;
-  var selectMode = false;
-  var selectedIds = [];
-  var $ = function(id){return document.getElementById(id);};
-  function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-  function plain(s){var d=document.createElement("div");d.innerHTML=s||"";return (d.textContent||d.innerText||"").replace(/\s+/g," ").trim();}
-  function load(){try{var raw=localStorage.getItem("kho-doc-v1");if(raw!==null){var parsed=JSON.parse(raw);if(Object.prototype.toString.call(parsed)==="[object Array]"){books=parsed;}}}catch(e){}}
-  function persist(){try{localStorage.setItem("kho-doc-v1",JSON.stringify(books));}catch(e){alert("Trình duyệt không cho lưu lâu dài. Hãy xuất JSON để sao lưu.");}}
-  function renderFilters(){
-    var cats=["Tất cả"], i;
-    for(i=0;i<books.length;i++){if(cats.indexOf(books[i].category)<0)cats.push(books[i].category);}
-    $("filters").innerHTML="";
-    var manage=document.createElement("button");manage.id="toggleSelect";manage.className="secondary";manage.textContent=selectMode?"Hoàn tất":"Quản lý bài";manage.onclick=function(){selectMode=!selectMode;$("selectBar").className="book-selectbar"+(selectMode?" visible":"");if(!selectMode){selectedIds=[];}renderBooks();renderFilters();};$("filters").appendChild(manage);
-    cats.forEach(function(c){var b=document.createElement("button");b.className="chip"+(active===c?" active":"");b.textContent=c;b.onclick=function(){active=c;renderFilters();renderBooks();};$("filters").appendChild(b);});
+  var list = document.getElementById('lessonList');
+  var i, row, label, box, text;
+  for (i = 1; i <= 100; i++) {
+    row = document.createElement('div');
+    row.className = 'progress-row';
+    label = document.createElement('label');
+    box = document.createElement('input');
+    box.type = 'checkbox';
+    box.id = 'lesson-' + i;
+    box.setAttribute('data-lesson', i);
+    text = document.createTextNode('Bài ' + (i < 10 ? '0' + i : i) + ' đã học');
+    label.appendChild(box);
+    label.appendChild(text);
+    row.appendChild(label);
+    list.appendChild(row);
+    box.onclick = function () { saveProgress(); };
   }
-  function renderBooks(){
-    var q=$("search").value.toLowerCase(), shown=[];
-    books.forEach(function(b){var hay=(b.title+" "+b.category+" "+b.summary+" "+plain(b.content)).toLowerCase();if((active==="Tất cả"||b.category===active)&&hay.indexOf(q)>=0)shown.push(b);});
-    $("total").textContent=shown.length+" BÀI";
-    $("library").innerHTML="";
-    $("library").className="bookgrid"+(selectMode?" select-mode":"");
-    updateSelectionCount();
-    if(!shown.length){$("library").innerHTML='<div class="empty">Chưa tìm thấy bài phù hợp.</div>';return;}
-    shown.forEach(function(b){
-      var card=document.createElement("div");card.className="book";
-      card.innerHTML='<div class="book-check"><label><input type="checkbox" value="'+esc(b.id)+'">Chọn bài này</label></div><div class="category">'+esc(b.category)+'</div><h3>'+esc(b.title)+'</h3><p>'+esc(b.summary||plain(b.content).slice(0,130))+'</p><div class="meta">'+esc(b.author||"")+'　·　'+(selectMode?'CHỌN ĐỂ XÓA':'MỞ BÀI ↗')+'</div>';
-      if(selectedIds.indexOf(String(b.id))>=0)card.className+=" selected-book";
-      var check=card.getElementsByTagName("input")[0];check.value=String(b.id);check.checked=selectedIds.indexOf(String(b.id))>=0;
-      check.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();};
-      var checkLabel=card.getElementsByTagName("label")[0];
-      if(checkLabel){checkLabel.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();};}
-      check.onchange=function(){if(this.checked){if(selectedIds.indexOf(String(b.id))<0)selectedIds.push(String(b.id));card.className+=" selected-book";}else{selectedIds=selectedIds.filter(function(id){return String(id)!==String(b.id);});card.className=card.className.replace(" selected-book","");}updateSelectionCount();};
-      card.onclick=function(){if(selectMode){check.checked=!check.checked;var ev=document.createEvent("HTMLEvents");ev.initEvent("change",true,false);check.dispatchEvent(ev);}else{openBook(b.id);}};$("library").appendChild(card);
-    });
+  function getStore(key) {
+    try { return window.localStorage.getItem(key); } catch (e) { return null; }
   }
-  function updateSelectionCount(){
-    $("selectedCount").textContent=selectedIds.length?"Đã chọn "+selectedIds.length+" bài":"Chưa chọn bài nào";
-    $("toggleSelect").textContent=selectMode?"Hoàn tất":"Quản lý bài";
+  function setStore(key, value) {
+    try { window.localStorage.setItem(key, value); return true; } catch (e) { return false; }
   }
-  $("selectShown").onclick=function(){var cards=$("library").getElementsByClassName("book");for(var i=0;i<cards.length;i++){var input=cards[i].getElementsByTagName("input")[0];if(input&&selectedIds.indexOf(input.value)<0)selectedIds.push(input.value);}renderBooks();};
-  $("clearSelection").onclick=function(){selectedIds=[];renderBooks();};
-  $("deleteSelected").onclick=function(e){
-    if(e){if(e.preventDefault)e.preventDefault();if(e.stopPropagation)e.stopPropagation();}
-    /* Lấy bản sao danh sách ID trước khi cập nhật thư viện. */
-    var idsToDelete=selectedIds.map(function(id){return String(id);});
-    if(!idsToDelete.length){alert("Vui lòng chọn bài cần xóa trước.");return false;}
-    if(!window.confirm("Xóa "+idsToDelete.length+" bài đã chọn khỏi thư viện?"))return false;
-    var before=books.length;
-    books=books.filter(function(b){return idsToDelete.indexOf(String(b.id))===-1;});
-    var removed=before-books.length;
-    selectedIds=[];
-    /* Thoát chế độ chọn để tránh thẻ cũ còn hiển thị trạng thái đã chọn. */
-    selectMode=false;
-    $("selectBar").className="book-selectbar";
-    persist();
-    renderFilters();
-    renderBooks();
-    if(removed===0){alert("Không tìm thấy bài đã chọn trong dữ liệu thư viện. Hãy tải lại trang rồi thử lại.");}
-    else{alert("Đã xóa "+removed+" bài.");}
-    return false;
-  };
-  function openBook(id){
-    var b=null;books.forEach(function(x){if(x.id===id)b=x;});if(!b)return;selected=id;
-    $("readerCategory").textContent=b.category;$("readerTitle").textContent=b.title;
-    $("readerMeta").textContent=b.author||"";
-    var content=b.content||"";
-    if(!/<(p|h[1-6]|blockquote|ul|ol|pre|br)\b/i.test(content)){
-      content=content.split(/\n\s*\n/).map(function(p){return "<p>"+esc(p).replace(/\n/g,"<br>")+"</p>";}).join("");
+  window.saveProgress = function () {
+    var arr = [], j, el, count = 0;
+    for (j = 1; j <= 100; j++) {
+      el = document.getElementById('lesson-' + j);
+      if (el.checked) { arr.push(j); count++; }
     }
-    $("readerBody").innerHTML=content;
-    $("editBook").style.display="inline-block";
-    $("reader").style.display="block";$("addPanel").style.display="none";
-    $("library").style.display="none";$("filters").style.display="none";
-    document.body.scrollTop=0;document.documentElement.scrollTop=0;
-  }
-  function closeReader(){$("reader").style.display="none";$("library").style.display="";$("filters").style.display="";selected=null;}
-  $("search").oninput=renderBooks;
-  $("back").onclick=closeReader;
-  $("editBook").onclick=function(){
-    var b=null;books.forEach(function(x){if(x.id===selected)b=x;});if(!b)return;
-    editingId=b.id;
-    $("formHeading").textContent="Sửa bài đọc";
-    $("newTitle").value=b.title||"";
-    $("newCategory").value=b.category||"";
-    $("newAuthor").value=b.author||"";
-    $("newSummary").value=b.summary||"";
-    $("newContent").value=b.content||"";
-    $("save").textContent="Lưu thay đổi";
-    $("addPanel").style.display="block";
-    document.body.scrollTop=0;document.documentElement.scrollTop=0;
+    var ok = setStore('fiftyLiteProgress', arr.join(','));
+    document.getElementById('progressText').innerHTML =
+      'Đã hoàn thành ' + count + '/100 bài.' +
+      (ok ? '' : ' Không thể lưu tự động trong phiên này.');
   };
-  $("showAdd").onclick=function(){
-    editingId=null;$("formHeading").textContent="Thêm một bài đọc";$("save").textContent="Lưu bài vào thư viện";
-    $("addPanel").style.display=$("addPanel").style.display==="none"?"block":"none";
+  window.clearProgress = function () {
+    var j;
+    for (j = 1; j <= 100; j++) document.getElementById('lesson-' + j).checked = false;
+    try { window.localStorage.removeItem('fiftyLiteProgress'); } catch (e) {}
+    saveProgress();
   };
-  $("cancelAdd").onclick=function(){$("addPanel").style.display="none";editingId=null;$("formHeading").textContent="Thêm một bài đọc";$("save").textContent="Lưu bài vào thư viện";};
-  $("save").onclick=function(){
-    var title=$("newTitle").value.replace(/^\s+|\s+$/g,"");
-    var category=$("newCategory").value.replace(/^\s+|\s+$/g,"")||"Chưa phân loại";
-    var content=$("newContent").value;
-    if(!title||!content.replace(/\s/g,"")){alert("Nhập tên bài và nội dung trước nhé.");return;}
-    var updated={title:title,category:category,author:$("newAuthor").value,summary:$("newSummary").value,content:content};
-    if(editingId){
-      for(var j=0;j<books.length;j++){if(books[j].id===editingId){books[j].title=updated.title;books[j].category=updated.category;books[j].author=updated.author;books[j].summary=updated.summary;books[j].content=updated.content;break;}}
-      selected=editingId;persist();
-      $("readerCategory").textContent=updated.category;$("readerTitle").textContent=updated.title;$("readerMeta").textContent=updated.author||"";
-      var displayContent=updated.content||"";
-      if(!/<(p|h[1-6]|blockquote|ul|ol|pre|br)\b/i.test(displayContent)){displayContent=displayContent.split(/\n\s*\n/).map(function(part){return "<p>"+esc(part).replace(/\n/g,"<br>")+"</p>";}).join("");}
-      $("readerBody").innerHTML=displayContent;
-    }else{
-      books.unshift({id:"b"+(new Date().getTime()),title:title,category:category,author:$("newAuthor").value,summary:$("newSummary").value,content:content});
-      persist();active="Tất cả";renderFilters();renderBooks();
+  window.saveNotes = function () {
+    var ok = setStore('fiftyLiteNotes', document.getElementById('notesText').value);
+    document.getElementById('saveStatus').innerHTML = ok ?
+      'Đã lưu ghi chú trên thiết bị này.' :
+      'Safari không cho lưu dữ liệu cục bộ. Hãy sao chép ghi chú sang ứng dụng Ghi chú.';
+  };
+  window.clearNotes = function () {
+    document.getElementById('notesText').value = '';
+    try { window.localStorage.removeItem('fiftyLiteNotes'); } catch (e) {}
+    document.getElementById('saveStatus').innerHTML = 'Đã xóa ghi chú trong trang này.';
+  };
+  var saved = getStore('fiftyLiteProgress');
+  if (saved) {
+    var parts = saved.split(','), k, n;
+    for (k = 0; k < parts.length; k++) {
+      n = parseInt(parts[k], 10);
+      if (n >= 1 && n <= 100) document.getElementById('lesson-' + n).checked = true;
     }
-    $("newTitle").value="";$("newCategory").value="";$("newAuthor").value="";$("newSummary").value="";$("newContent").value="";
-    $("addPanel").style.display="none";var wasEditing=!!editingId;editingId=null;$("formHeading").textContent="Thêm một bài đọc";$("save").textContent="Lưu bài vào thư viện";if(wasEditing){alert("Đã lưu thay đổi.");}else{alert("Đã thêm bài vào thư viện trên thiết bị này.");}
-  };
-  $("export").onclick=function(){
-    var blob=new Blob([JSON.stringify(books,null,2)],{type:"application/json"});
-    var url=URL.createObjectURL(blob),a=document.createElement("a");
-    a.href=url;a.download="kho-doc-backup.json";document.body.appendChild(a);a.click();
-    setTimeout(function(){URL.revokeObjectURL(url);document.body.removeChild(a);},1000);
-  };
-  $("importBtn").onclick=function(){$("importFile").click();};
-  $("importFile").onchange=function(){
-    var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();
-    r.onload=function(){try{var data=JSON.parse(r.result);if(!data||!data.length)throw new Error();books=data;persist();active="Tất cả";renderFilters();renderBooks();alert("Đã nhập thư viện.");}catch(e){alert("File JSON không đúng định dạng.");}};
-    r.readAsText(f);this.value="";
-  };
-  load();renderFilters();renderBooks();
-}());
+  }
+  var notes = getStore('fiftyLiteNotes');
+  if (notes !== null) document.getElementById('notesText').value = notes;
+  saveProgress();
+})();
 </script>
 </body>
 </html>
